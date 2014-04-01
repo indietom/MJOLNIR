@@ -198,7 +198,7 @@ namespace spel_project_1
                     Rectangle playerBodyR = new Rectangle((int)player.x + 3, (int)player.y - 3, 32, 32);
                     Rectangle playerHead = new Rectangle((int)player.x, (int)player.y - 6, 32, 32);
                     Rectangle playerLadderHead = new Rectangle((int)player.x, (int)player.y - 24, 32, 32);
-                    Rectangle playerRC = new Rectangle((int)player.renderX+10, (int)player.renderY+7, 10, 16);
+                    Rectangle playerRC = new Rectangle((int)player.renderX + 10, (int)player.renderY + 7, 10, 16);
                     Rectangle ebulletRC;
                     Rectangle bulletRC;
                     Rectangle powerUpRC;
@@ -249,10 +249,10 @@ namespace spel_project_1
                         e.animation();
                         e.applyOffset(camera);
                         e.checkHealth(explosions);
-                        enemyC = new Rectangle((int)e.x, (int)e.y+2, e.width, e.height);
-                        enemyCL = new Rectangle((int)e.x-3, (int)e.y-5, e.width, e.height);
-                        enemyCR = new Rectangle((int)e.x+3, (int)e.y-5, e.width, e.height);
-                        
+                        enemyC = new Rectangle((int)e.x, (int)e.y + 2, e.width, e.height);
+                        enemyCL = new Rectangle((int)e.x - 3, (int)e.y - 5, e.width, e.height);
+                        enemyCR = new Rectangle((int)e.x + 3, (int)e.y - 5, e.width, e.height);
+
                         enemyRC = new Rectangle((int)e.renderX, (int)e.renderY, 32, 32);
 
                         if (playerRC.Intersects(enemyRC))
@@ -332,7 +332,7 @@ namespace spel_project_1
                                     if (b.type == 2)
                                     {
                                         e.hp -= 3;
-                                        explosions.Add(new explosion(b.x-16, b.y-16, 32));
+                                        explosions.Add(new explosion(b.x - 16, b.y - 16, 32));
                                     }
                                     else
                                     {
@@ -379,20 +379,24 @@ namespace spel_project_1
                         player.onWall = false;
                         player.inputActive = true;
                     }
-                    if (keyboard.IsKeyDown(Keys.Left) && keyboard.IsKeyUp(Keys.Right) || keyboard.IsKeyDown(Keys.A) && keyboard.IsKeyUp(Keys.D) || gamepad.ThumbSticks.Left.X == -1.0f && gamepad.ThumbSticks.Left.X != 1.0f)
+                    if (player.inputActive && !player.dead)
                     {
-                        if (player.animationActive)
-                            player.animationCount += 1;
-                        player.x -= 3;
-                        player.direction = 3;
+                        if (keyboard.IsKeyDown(Keys.Left) && keyboard.IsKeyUp(Keys.Right) || keyboard.IsKeyDown(Keys.A) && keyboard.IsKeyUp(Keys.D) || gamepad.ThumbSticks.Left.X == -1.0f && gamepad.ThumbSticks.Left.X != 1.0f)
+                        {
+                            if (player.animationActive)
+                                player.animationCount += 1;
+                            player.x -= 3;
+                            player.direction = 3;
+                        }
+                        if (keyboard.IsKeyDown(Keys.Right) && keyboard.IsKeyUp(Keys.Left) || keyboard.IsKeyDown(Keys.D) && keyboard.IsKeyUp(Keys.A) || gamepad.ThumbSticks.Left.X == 1.0f && gamepad.ThumbSticks.Left.X != -1.0f)
+                        {
+                            if (player.animationActive)
+                                player.animationCount += 1;
+                            player.x += 3;
+                            player.direction = 4;
+                        }
                     }
-                    if (keyboard.IsKeyDown(Keys.Right) && keyboard.IsKeyUp(Keys.Left) || keyboard.IsKeyDown(Keys.D) && keyboard.IsKeyUp(Keys.A) || gamepad.ThumbSticks.Left.X == 1.0f && gamepad.ThumbSticks.Left.X != -1.0f)
-                    {
-                        if (player.animationActive)
-                            player.animationCount += 1;
-                        player.x += 3;
-                        player.direction = 4;
-                    }
+            
                     if (collisionTile(playerHead, levelManager.currentSectionC, 1) && !player.onGround)
                     {
                         player.onRoof = true;
@@ -450,7 +454,7 @@ namespace spel_project_1
                     if (collisionTile(playerFeet, levelManager.currentSectionC, 3))
                     {
                         levelManager.section += 1;
-                        levelManager.roomTransition(ref player.inputActive, enemies, bullets, player, particles, powerUps, ref camera); 
+                        levelManager.roomTransition(ref player.inputActive, enemies, bullets, player, particles, powerUps, ref camera);
                     }
                     if (collisionTile(playerFeet, levelManager.currentSectionC, 4))
                     {
@@ -458,7 +462,7 @@ namespace spel_project_1
                         {
                             player.hit = true;
                         }
-                        player.hp = 0; 
+                        player.hp = 0;
                     }
                     for (int i = 0; i < bullets.Count; i++)
                     {
