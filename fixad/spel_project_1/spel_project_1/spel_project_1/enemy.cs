@@ -154,7 +154,7 @@ namespace spel_project_1
                         direction = 3;
                     }
                     firerate += 2;
-                    if (firerate >= 32 * 3)
+                    if (firerate >= 32 * 3 && distanceTo(player.x, player.y) <= 440)
                     {
                         vulnerable = true;
                         shooting = true;
@@ -184,11 +184,13 @@ namespace spel_project_1
                     {
                         if (direction == 3)
                         {
-                            enemyBullets.Add(new enemyBullet(x, y + 16, random.Next(-200, -160), 1, 200));
+                            if (distanceTo(player.x, player.y) <= 440)
+                                enemyBullets.Add(new enemyBullet(x, y + 16, random.Next(-200, -160), 1, 200));
                         }
                         else
                         {
-                            enemyBullets.Add(new enemyBullet(x, y + 16, random.Next(-20, 20), 1, 200));
+                            if (distanceTo(player.x, player.y) <= 440)
+                                enemyBullets.Add(new enemyBullet(x, y + 16, random.Next(-20, 20), 1, 200));
                         }
                     }
                     if (player.x < x)
@@ -222,25 +224,21 @@ namespace spel_project_1
                     switchDirection += 1;
                     if (switchDirection >= maxSwitchDirection && direction == 4)
                     {
-                        Console.WriteLine(direction);
                         direction = 3;
                         switchDirection = 0;
                     }
                     if (switchDirection >= maxSwitchDirection && direction == 3)
                     {
-                        Console.WriteLine(direction);
                         direction = 4;
                         switchDirection = 0;
                     }
                     if (switchDirection >= maxSwitchDirection && direction == 1)
                     {
-                        Console.WriteLine(direction);
                         direction = 2;
                         switchDirection = 0;
                     }
                     if (switchDirection >= maxSwitchDirection && direction == 2)
                     {
-                        Console.WriteLine(direction);
                         direction = 1;
                         switchDirection = 0;
                     }

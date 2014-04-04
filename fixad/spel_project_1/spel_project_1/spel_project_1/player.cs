@@ -38,6 +38,8 @@ namespace spel_project_1
         public int shotgunAmmo;
         public int rifleAmmo;
         public int rocketAmmo;
+        public int hammerDelay;
+        public bool spawnHammerEffectCheck;
 
         public player()
         {
@@ -88,7 +90,7 @@ namespace spel_project_1
                 {
                     for (int i = 0; i < 2; i++)
                     {
-                        particles.Add(new particle(x + 16 + random.Next(10), y + random.Next(10), 50, 4, "red", random.Next(-290, -250), random.Next(2, 5)));
+                        particles.Add(new particle(x + random.Next(32), y + random.Next(32), 50, 4, "red", random.Next(-290, -250), random.Next(2, 5)));
                     }
                     bleedCount = 0;
                 }
@@ -102,15 +104,22 @@ namespace spel_project_1
                 bleeding = false;
             }
         }
-        public void input(List<bullet> bullets, List<particle> particles)
+        public void input(List<bullet> bullets, List<particle> particles, ref Rectangle camera)
         {
             Random random = new Random();
             KeyboardState keyboard = Keyboard.GetState();
             GamePadState gamepad = GamePad.GetState(PlayerIndex.One);
             if (keyboard.IsKeyDown(Keys.R))
             {
+                camera.X = (int)x;
+                camera.Y = 0;
                 setCoords(210, 100);
                 hp = 10;
+            }
+            if (keyboard.IsKeyDown(Keys.F1))
+            {
+                Console.WriteLine(x);
+                Console.WriteLine(y);
             }
             if (dead)
             {
@@ -118,8 +127,39 @@ namespace spel_project_1
                 jumping = false;
                 inputActive = false;
             }
+            if (hammerDelay >= 1)
+            {
+                inputActive = false;
+                hammerDelay += 1;
+                if (hammerDelay == 32 && spawnHammerEffectCheck)
+                {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        if (direction == 3)
+                        {
+                            particles.Add(new particle(x - 16 * 2, y + 32, 50, 1, "light blue", random.Next(-150, -40), random.Next(5, 7)));
+                        }
+                        else
+                        {
+                            particles.Add(new particle(x + 16 * 4, y + 32, 50, 1, "light blue", random.Next(-150, -40), random.Next(5, 7)));
+                        }
+                    }
+                }
+                if (hammerDelay >= 64)
+                {
+                    hammerDelay = 0;
+                    inputActive = true;
+                }
+            }
             if (inputActive)
             {
+                if (keyboard.IsKeyDown(Keys.C) || keyboard.IsKeyDown(Keys.LeftShift))
+                {
+                    if (hammerDelay <= 0 && onGround && !jumping && !onLadder && !onWall)
+                    {
+                        hammerDelay = 1;
+                    }
+                }
                 if (keyboard.IsKeyDown(Keys.X) || keyboard.IsKeyDown(Keys.Space) || gamepad.Buttons.B == ButtonState.Pressed)
                 {
                     if (gunType == 1 && !shoothingFalse && !shoothingFalse2 && !shootingFalse3 && fireRate <= 0)

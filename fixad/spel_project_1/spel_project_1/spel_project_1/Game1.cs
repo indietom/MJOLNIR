@@ -39,6 +39,7 @@ namespace spel_project_1
         List<particle> particles = new List<particle>();
         List<explosion> explosions = new List<explosion>();
         List<titleCard> titleCards = new List<titleCard>();
+        List<boss> bosses = new List<boss>();
         bool cameraFree = false;
         menu menu;
 
@@ -54,6 +55,7 @@ namespace spel_project_1
         Texture2D spritesheet;
         Texture2D tilesheet;
         Texture2D tileSet5;
+        Texture2D backgroundLevel5;
         protected override void LoadContent()
         {
 
@@ -61,6 +63,7 @@ namespace spel_project_1
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             spritesheet = Content.Load<Texture2D>("spritesheet");
+            backgroundLevel5 = Content.Load<Texture2D>("background5");
             tileSet5 = Content.Load<Texture2D>("tileSet5");
             // TODO: use this.Content to load your game content here
         }
@@ -81,6 +84,15 @@ namespace spel_project_1
             Rectangle right = new Rectangle(640-300, 0, 300, 480);
             Rectangle down = new Rectangle(0, 480 - 200, 640, 200);
             Rectangle up = new Rectangle(0, 0, 640, 200);
+
+            if (camera.X <= 0)
+            {
+                camera.X = 0;
+            }
+            if (camera.X >= levelManager.currentSection.GetLength(0) * 16)
+            {
+                camera.X = levelManager.currentSection.GetLength(0) * 16;
+            }
 
             if (playerCamera.Intersects(left) && !cameraFree)
             {
@@ -182,9 +194,14 @@ namespace spel_project_1
                     break;
                 case "menu":
                     menu.updateMenu(titleCards, levelManager);
+                    enemies.Clear();
+                    bosses.Clear();
+                    explosions.Clear();
+                    particles.Clear();
+                    bullets.Clear();
                     foreach (titleCard tc in titleCards)
                     {
-                        tc.update(levelManager, ref gameState, enemies, bullets, player, particles, powerUps, camera);
+                        tc.update(levelManager, ref gameState, enemies, bullets, player, particles, powerUps, camera, enemyBullets, bosses);
                         if (levelManager.levelsBeaten[tc.bossNumber])
                         {
                             tc.imgy = tc.frame(6);
@@ -199,6 +216,15 @@ namespace spel_project_1
                     Rectangle playerHead = new Rectangle((int)player.x, (int)player.y - 6, 32, 32);
                     Rectangle playerLadderHead = new Rectangle((int)player.x, (int)player.y - 24, 32, 32);
                     Rectangle playerRC = new Rectangle((int)player.renderX + 10, (int)player.renderY + 7, 10, 16);
+                    Rectangle hammerParticleC;
+                    if (player.direction == 3)
+                    {
+                        hammerParticleC = new Rectangle((int)player.x - 16 * 4, (int)player.y + 32, 32, 32);
+                    }
+                    else
+                    {
+                        hammerParticleC = new Rectangle((int)player.x + 16 * 2, (int)player.y + 32, 32, 32);
+                    }
                     Rectangle ebulletRC;
                     Rectangle bulletRC;
                     Rectangle powerUpRC;
@@ -206,8 +232,35 @@ namespace spel_project_1
                     Rectangle enemyC;
                     Rectangle enemyCL;
                     Rectangle enemyCR;
+                    Rectangle bossRC;
 
                     cameraLogic();
+
+                    foreach (boss b in bosses)
+                    {
+                        b.movment();
+                        b.attacking(enemyBullets);
+                        b.animation();
+                        b.applyOffset(camera);
+                        b.checkHealth(levelManager, ref gameState, explosions);
+                        bossRC = new Rectangle((int)b.x, (int)b.y, b.width, b.height);
+                        foreach (bullet bu in bullets)
+                        {
+                            bulletRC = new Rectangle((int)bu.x, (int)bu.y, bu.width, bu.height);
+                            if (bulletRC.Intersects(bossRC))
+                            {
+                                if (bu.type == 2)
+                                {
+                                    b.hp -= 2;
+                                }
+                                else
+                                {
+                                    b.hp -= 1;
+                                }
+                                bu.destroy = true;
+                            }
+                        }
+                    }
 
                     foreach (powerUp pu in powerUps)
                     {
@@ -257,7 +310,7 @@ namespace spel_project_1
 
                         if (playerRC.Intersects(enemyRC))
                         {
-                            if (e.type == 3)
+                            if (e.type == 3 || e.type == 2 || e.type == 5)
                             {
                                 player.hp = 0;
                                 if (!player.dead)
@@ -344,10 +397,19 @@ namespace spel_project_1
                     }
 
                     player.movemnt();
-                    player.input(bullets, particles);
+                    player.input(bullets, particles, ref camera);
                     player.applyOffset(camera);
                     player.checkHealth(healthbar, particles);
                     player.animation();
+
+                    if (collisionTile(hammerParticleC, levelManager.currentSectionC, 1))
+                    {
+                        player.spawnHammerEffectCheck = true;
+                    }
+                    else
+                    {
+                        player.spawnHammerEffectCheck = false;
+                    }
                     if (collisionTile(playerFeet, levelManager.currentSectionC, 1))
                     {
                         player.onGround = true;
@@ -379,7 +441,7 @@ namespace spel_project_1
                         player.onWall = false;
                         player.inputActive = true;
                     }
-                    if (player.inputActive && !player.dead)
+                    if (player.inputActive && !player.dead && player.hammerDelay <= 0)
                     {
                         if (keyboard.IsKeyDown(Keys.Left) && keyboard.IsKeyUp(Keys.Right) || keyboard.IsKeyDown(Keys.A) && keyboard.IsKeyUp(Keys.D) || gamepad.ThumbSticks.Left.X == -1.0f && gamepad.ThumbSticks.Left.X != 1.0f)
                         {
@@ -454,7 +516,7 @@ namespace spel_project_1
                     if (collisionTile(playerFeet, levelManager.currentSectionC, 3))
                     {
                         levelManager.section += 1;
-                        levelManager.roomTransition(ref player.inputActive, enemies, bullets, player, particles, powerUps, ref camera);
+                        levelManager.roomTransition(ref player.inputActive, enemies, bullets, player, particles, powerUps, ref camera, enemyBullets, bosses);
                     }
                     if (collisionTile(playerFeet, levelManager.currentSectionC, 4))
                     {
@@ -506,6 +568,13 @@ namespace spel_project_1
                             powerUps.RemoveAt(i);
                         }
                     }
+                    for (int i = 0; i < bosses.Count; i++)
+                    {
+                        if (bosses[i].destroy)
+                        {
+                            bosses.RemoveAt(i);
+                        }
+                    }
                     break;
         }
             base.Update(gameTime);
@@ -528,13 +597,19 @@ namespace spel_project_1
                     
                     break;
                 case "game":
-                    if(levelManager.currentLevel != 4)
+                    if (levelManager.currentLevel != 4)
+                    {
                         level.drawLevel(spriteBatch, spritesheet, levelManager.currentSection, camera, levelManager.currentSection.GetLength(1), levelManager.currentSection.GetLength(0));
+                    }
                     else
+                    {
+                        spriteBatch.Draw(backgroundLevel5, new Vector2(0, 0), Color.White);
                         level.drawLevel(spriteBatch, tileSet5, levelManager.currentSection, camera, levelManager.currentSection.GetLength(1), levelManager.currentSection.GetLength(0));
+                    }
                     player.drawSpriteOffset(spriteBatch, spritesheet);
                     foreach (bullet b in bullets) { b.drawSpriteOffset(spriteBatch, spritesheet); }
                     foreach (enemy e in enemies) { e.drawSpriteOffset(spriteBatch, spritesheet); }
+                    foreach (boss b in bosses) { b.drawSpriteOffset(spriteBatch, spritesheet); }
                     foreach (enemyBullet eb in enemyBullets) { eb.drawSpriteOffset(spriteBatch, spritesheet); }
                     foreach (powerUp pu in powerUps) { pu.drawSpriteOffset(spriteBatch, spritesheet); }
                     foreach (explosion ex in explosions) { ex.drawSpriteOffset(spriteBatch, spritesheet); }

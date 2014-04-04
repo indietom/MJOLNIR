@@ -28,7 +28,7 @@ namespace spel_project_1
                 imgx = 1;
             }
         }
-        public void update(levelManager lm, ref string gameState, List<enemy> enemies, List<bullet> bullets, player player, List<particle> particles, List<powerUp> powerUps, Rectangle camera)
+        public void update(levelManager lm, ref string gameState, List<enemy> enemies, List<bullet> bullets, player player, List<particle> particles, List<powerUp> powerUps, Rectangle camera, List<enemyBullet> enemyBullets, List<boss> bosses)
         {
             MouseState mouse = Mouse.GetState();
             Rectangle cursor = new Rectangle(mouse.X, mouse.Y, 8, 8);
@@ -53,7 +53,8 @@ namespace spel_project_1
                 if (cutSceneCount >= 64 * 2)
                 {
                     gameState = "game";
-                    lm.roomTransition(ref player.inputActive, enemies, bullets, player, particles, powerUps, ref camera);
+                    lm.roomTransition(ref player.inputActive, enemies, bullets, player, particles, powerUps, ref camera, enemyBullets, bosses);
+                    cutSceneCount = 0;
                 }
             }
         }

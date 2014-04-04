@@ -33,11 +33,12 @@ namespace spel_project_1
             bullets.Clear();
             section = 1;
         }
-        public void roomTransition(ref bool input, List<enemy> enemies, List<bullet> bullets, player player, List<particle> particles, List<powerUp> powerUps, ref Rectangle camera)
+        public void roomTransition(ref bool input, List<enemy> enemies, List<bullet> bullets, player player, List<particle> particles, List<powerUp> powerUps, ref Rectangle camera, List<enemyBullet> enemyBullets, List<boss> bosses)
         {
             enemies.Clear();
             bullets.Clear();
             particles.Clear();
+            enemyBullets.Clear();
             powerUps.Clear();
             if (currentLevel == 0)
             {
@@ -139,10 +140,15 @@ namespace spel_project_1
             {
                 if (section == 1)
                 {
-
+                    enemies.Add(new enemy(780, 324, 1, 3));
+                    camera.X = 0;
+                    camera.Y = 0;
+                    player.x = 128;
                 }
                 if (section == 2)
                 {
+                    enemies.Add(new enemy(387, 371, 1, 3));
+                    enemies.Add(new enemy(729, 309, 3, 3, 16*15));
                     camera.X = 0;
                     camera.Y = 0;
                     player.x = 32;
@@ -156,6 +162,8 @@ namespace spel_project_1
                 }
                 if (section == 4)
                 {
+                    enemies.Add(new enemy(16 * 63, 16 * 19, 2, 3));
+                    enemies.Add(new enemy(16 * 43, 16 * 19, 2, 3));
                     camera.X = 0;
                     camera.Y = 0;
                     player.x = 32;
@@ -166,6 +174,8 @@ namespace spel_project_1
                     camera.Y = 0;
                     player.x = 32;
                     player.y = 0;
+                    bosses.Add(new boss(4, 539-32, 390-6));
+                    enemies.Add(new enemy(5 * 16, 390 - 6 - 64, 3, 4, 30 * 16 - 32));
                 }
             }
         }
