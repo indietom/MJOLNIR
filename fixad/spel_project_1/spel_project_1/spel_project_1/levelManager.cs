@@ -40,6 +40,7 @@ namespace spel_project_1
             particles.Clear();
             enemyBullets.Clear();
             powerUps.Clear();
+            bosses.Clear();
             if (currentLevel == 0)
             {
                 if (section == 1)
@@ -132,6 +133,7 @@ namespace spel_project_1
                 }
                 if (section == 9)
                 {
+                    bosses.Add(new boss(3, 539 - 32, 390 - 6));
                     player.x = 320;
                     player.y = 0;
                 }
@@ -140,10 +142,11 @@ namespace spel_project_1
             {
                 if (section == 1)
                 {
+                    Console.WriteLine("lel");
                     enemies.Add(new enemy(780, 324, 1, 3));
                     camera.X = 0;
                     camera.Y = 0;
-                    player.x = 128;
+                    player.setCoords(300, 15);
                 }
                 if (section == 2)
                 {

@@ -40,6 +40,7 @@ namespace spel_project_1
         public int rocketAmmo;
         public int hammerDelay;
         public bool spawnHammerEffectCheck;
+        public int respawnCounter;
 
         public player()
         {
@@ -56,11 +57,35 @@ namespace spel_project_1
             acquiredGuns = 4;
             animationActive = true;
         }
-        public void checkHealth(healthbar healthbar, List<particle> particles)
+        public void checkHealth(healthbar healthbar, List<particle> particles, levelManager lm, List<enemy> enemies, List<bullet> bullets, List<powerUp> powerUps, ref Rectangle camera, List<enemyBullet> enemyBullets, List<boss> bosses)
         {
             Random random = new Random();
-
+       
             healthbar.height = hp * 10;
+
+            if (lm.currentLevel == 4 || lm.currentLevel == 3)
+            {
+                if (y >= 500)
+                {
+                    hp = 0;
+                }
+            }
+
+            if (dead)
+            {
+                respawnCounter += 1;
+                if (respawnCounter >= 128)
+                {
+                    lm.section = 1;
+                    lm.roomTransition(ref inputActive, enemies, bullets, new player(), particles, powerUps, ref camera, enemyBullets, bosses); 
+                    hp = 10;
+                    respawnCounter = 0;
+                    if(lm.currentLevel == 4)
+                        setCoords(300, 15);
+                    if (lm.currentLevel == 3)
+                        setCoords(50, 300);
+                }
+            }
 
             if (hp <= 0)
             {
@@ -137,11 +162,11 @@ namespace spel_project_1
                     {
                         if (direction == 3)
                         {
-                            particles.Add(new particle(x - 16 * 2, y + 32, 50, 1, "light blue", random.Next(-150, -40), random.Next(5, 7)));
+                            particles.Add(new particle(x - 16 * 2, y + 32, 50, 1, "light blue", random.Next(-150, -40), random.Next(5, 7), true));
                         }
                         else
                         {
-                            particles.Add(new particle(x + 16 * 4, y + 32, 50, 1, "light blue", random.Next(-150, -40), random.Next(5, 7)));
+                            particles.Add(new particle(x + 16 * 4, y + 32, 50, 1, "light blue", random.Next(-150, -40), random.Next(5, 7), true));
                         }
                     }
                 }
@@ -305,6 +330,14 @@ namespace spel_project_1
                 }
 
                 if (keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.Left) && keyboard.IsKeyUp(Keys.D) && keyboard.IsKeyUp(Keys.A) && gamepad.ThumbSticks.Left.X != 1.0f && gamepad.ThumbSticks.Left.X != -1.0f)
+                {
+                    if (animationActive)
+                    {
+                        imgx = 1;
+                        animationCount = 0;
+                    }
+                }
+                if (keyboard.IsKeyDown(Keys.Right) && keyboard.IsKeyDown(Keys.Left) || keyboard.IsKeyDown(Keys.D) && keyboard.IsKeyDown(Keys.A))
                 {
                     if (animationActive)
                     {

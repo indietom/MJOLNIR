@@ -123,6 +123,10 @@ namespace spel_project_1
                 camera.Y = 0;
                 cameraFree = true;
             }
+            else
+            {
+                cameraFree = false;
+            }
         }
         bool collisionTile(Rectangle rect, int[,] mapC, int number)
         {
@@ -215,7 +219,7 @@ namespace spel_project_1
                     Rectangle playerBodyR = new Rectangle((int)player.x + 3, (int)player.y - 3, 32, 32);
                     Rectangle playerHead = new Rectangle((int)player.x, (int)player.y - 6, 32, 32);
                     Rectangle playerLadderHead = new Rectangle((int)player.x, (int)player.y - 24, 32, 32);
-                    Rectangle playerRC = new Rectangle((int)player.renderX + 10, (int)player.renderY + 7, 10, 16);
+                    Rectangle playerRC = new Rectangle((int)player.renderX + 10, (int)player.renderY, 10, 32);
                     Rectangle hammerParticleC;
                     if (player.direction == 3)
                     {
@@ -233,6 +237,7 @@ namespace spel_project_1
                     Rectangle enemyCL;
                     Rectangle enemyCR;
                     Rectangle bossRC;
+                    Rectangle hammerParticleRC;
 
                     cameraLogic();
 
@@ -244,6 +249,10 @@ namespace spel_project_1
                         b.applyOffset(camera);
                         b.checkHealth(levelManager, ref gameState, explosions);
                         bossRC = new Rectangle((int)b.x, (int)b.y, b.width, b.height);
+                        if (playerRC.Intersects(bossRC))
+                        {
+                            player.hp = 0;
+                        }
                         foreach (bullet bu in bullets)
                         {
                             bulletRC = new Rectangle((int)bu.x, (int)bu.y, bu.width, bu.height);
@@ -354,6 +363,17 @@ namespace spel_project_1
                     {
                         p.movment();
                         p.update(camera);
+                        hammerParticleRC = new Rectangle();
+                        if(p.hammerPart)
+                            hammerParticleRC = new Rectangle((int)p.renderX, (int)p.renderY, p.width, p.height);
+                        foreach (enemy e in enemies)
+                        {
+                            enemyRC = new Rectangle((int)e.renderX, (int)e.renderY, e.width, e.height);
+                            if (hammerParticleRC.Intersects(enemyRC) && e.vulnerable)
+                            {
+                                e.hp = 0;
+                            }
+                        }
                     }
 
                     foreach (enemyBullet eb in enemyBullets)
@@ -399,7 +419,7 @@ namespace spel_project_1
                     player.movemnt();
                     player.input(bullets, particles, ref camera);
                     player.applyOffset(camera);
-                    player.checkHealth(healthbar, particles);
+                    player.checkHealth(healthbar, particles, levelManager, enemies, bullets, powerUps, ref camera, enemyBullets, bosses);
                     player.animation();
 
                     if (collisionTile(hammerParticleC, levelManager.currentSectionC, 1))
@@ -615,12 +635,24 @@ namespace spel_project_1
                     foreach (explosion ex in explosions) { ex.drawSpriteOffset(spriteBatch, spritesheet); }
                     foreach (particle p in particles) { p.drawSpriteOffset(spriteBatch, spritesheet); }
                     healthbar.drawSprite(spriteBatch, spritesheet);
+                    if (player.gunType == 1)
+                    {
+                        spriteBatch.DrawString(gameFont, "Pistol: Infinate", new Vector2(500, 30), Color.Coral);
+                    }
+                    if (player.gunType == 2)
+                    {
+                        spriteBatch.DrawString(gameFont, "Rocket: " + player.rocketAmmo, new Vector2(500, 30), Color.Coral);
+                    }
+                    if (player.gunType == 3)
+                    {
+                        spriteBatch.DrawString(gameFont, "Shotgun: " + player.shotgunAmmo, new Vector2(500, 30), Color.Coral);
+                    }
+                    if (player.gunType == 4)
+                    {
+                        spriteBatch.DrawString(gameFont, "Rifle: " + player.rifleAmmo, new Vector2(500, 30), Color.Coral);
+                    }
                     break;
             }
-
-            spriteBatch.DrawString(gameFont, "Shotgun: " + player.shotgunAmmo, new Vector2(500, 10), Color.White);
-            spriteBatch.DrawString(gameFont, "Rocket: " + player.rocketAmmo, new Vector2(500, 30), Color.White);
-            spriteBatch.DrawString(gameFont, "Rifle: " + player.rifleAmmo, new Vector2(500, 50), Color.White);
 
             spriteBatch.End();
 

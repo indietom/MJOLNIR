@@ -12,6 +12,8 @@ namespace spel_project_1
         public int maxSwitchDirection;
         public int gotoMenuCount;
         public int firerate;
+        public bool elevate;
+        public int changeHeightCount;
 
         public boss(int type2, float x2, float y2)
         {
@@ -23,6 +25,12 @@ namespace spel_project_1
                 case 4:
                     setSize(65, 32);
                     setSpriteCoords(34, 430);
+                    maxSwitchDirection = 30 * 16 - 32;
+                    direction = 3;
+                    break;
+                case 3:
+                    setSize(65, 32);
+                    setSpriteCoords(100, 430);
                     maxSwitchDirection = 30 * 16 - 32;
                     direction = 3;
                     break;
@@ -48,6 +56,23 @@ namespace spel_project_1
         {
             switch (type)
             {
+                case 3:
+                    firerate += 1;
+                    if (hp >= 1)
+                    {
+                        if (!elevate)
+                        {
+                            if (firerate == 64 || firerate == 64 + 16 || firerate == 64 + 32)
+                            {
+                                enemyBullets.Add(new enemyBullet(x + 32, y + 11, -270, 1, 200));
+                            }
+                            if (firerate > 64 + 32)
+                            {
+                                firerate = 0;
+                            }
+                        }
+                    }
+                    break;
                 case 4:
                     firerate += 1;
                     if (hp >= 1)
@@ -96,6 +121,57 @@ namespace spel_project_1
         {
             switch (type)
             {
+                case 3:
+                    if (hp >= 1)
+                    {
+                        if (direction == 3)
+                        {
+                            x -= 1;
+                        }
+                        else
+                        {
+                            x += 1;
+                        }
+                        if (elevate)
+                        {
+                            if (y > 50)
+                            {
+                                y -= 1;
+                            }
+                        }
+                        else
+                        {
+                            if (y < 390 + 32)
+                            {
+                                y += 1;
+                            }
+                        }
+                    }
+                    changeHeightCount += 1;
+                    if (changeHeightCount >= 500)
+                    {
+                        if (elevate)
+                        {
+                            elevate = false;
+                        }
+                        else
+                        {
+                            elevate = true;
+                        }
+                        changeHeightCount = 0;
+                    }
+                    switchDirection += 1;
+                    if (direction == 3 && switchDirection >= maxSwitchDirection)
+                    {
+                        direction = 4;
+                        switchDirection = 0;
+                    }
+                    if (direction == 4 && switchDirection >= maxSwitchDirection)
+                    {
+                        direction = 3;
+                        switchDirection = 0;
+                    }
+                    break;
                 case 4:
                     if (hp >= 1)
                     {
@@ -112,13 +188,11 @@ namespace spel_project_1
                     if (direction == 3 && switchDirection >= maxSwitchDirection)
                     {
                         direction = 4;
-                        Console.WriteLine(direction);
                         switchDirection = 0;
                     }
                     if (direction == 4 && switchDirection >= maxSwitchDirection)
                     {
                         direction = 3;
-                        Console.WriteLine(direction);
                         switchDirection = 0;
                     }
                     break;

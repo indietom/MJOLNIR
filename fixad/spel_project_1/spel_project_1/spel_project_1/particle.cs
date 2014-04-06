@@ -18,7 +18,57 @@ namespace spel_project_1
         public int lifeTime;
         public int type;
         public float accel;
+        public bool hammerPart;
 
+        public particle(float x2, float y2, int maxLifeTime2, int type2, string color, float ang, float spe, bool hammerPart2)
+        {
+            hammerPart = hammerPart2;
+            setCoords(x2, y2);
+            destroy = false;
+            type = type2;
+            maxLifeTime = maxLifeTime2;
+            angle = ang;
+            setSize(3, 3);
+            switch (color)
+            {
+                case "lightblue":
+                    setSpriteCoords(232, 7);
+                    break;
+                case "yellow":
+                    setSpriteCoords(232, 4);
+                    break;
+                case "lightgreen":
+                    break;
+                case "red":
+                    setSpriteCoords(232, 1);
+                    break;
+                case "shotgunshell":
+                    setSize(6, 3);
+                    setSpriteCoords(238, 1);
+                    break;
+                case "grey":
+                    setSpriteCoords(235, 25);
+                    break;
+            }
+            switch (type)
+            {
+                case 1:
+                    accel = spe;
+                    speed = accel;
+                    break;
+                case 2:
+                    speed = spe;
+                    break;
+                case 3:
+                    accel = spe;
+                    speed = accel;
+                    break;
+                case 4:
+                    accel = spe;
+                    speed = accel;
+                    break;
+            }
+        }
         public particle(float x2, float y2, int maxLifeTime2, int type2, string color, float ang, float spe)
         {
             setCoords(x2, y2);
