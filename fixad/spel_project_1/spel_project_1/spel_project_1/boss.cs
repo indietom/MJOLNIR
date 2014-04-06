@@ -52,7 +52,7 @@ namespace spel_project_1
                     break;
             }
         }
-        public void attacking(List<enemyBullet> enemyBullets)
+        public void attacking(List<enemyBullet> enemyBullets, List<enemy> enemies)
         {
             switch (type)
             {
@@ -60,7 +60,11 @@ namespace spel_project_1
                     firerate += 1;
                     if (hp >= 1)
                     {
-                        if (!elevate)
+                        if (changeHeightCount == 499 && !elevate)
+                        {
+                            enemies.Add(new enemy(x, y, 2, 3));
+                        }
+                        if (elevate)
                         {
                             if (firerate == 64 || firerate == 64 + 16 || firerate == 64 + 32)
                             {

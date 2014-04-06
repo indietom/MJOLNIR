@@ -110,7 +110,7 @@ namespace spel_project_1
                 if (section == 4)
                 {
                     player.x = 0;
-                    enemies.Add(new enemy(600, 170, 5, 4));
+                    enemies.Add(new enemy(400, 70, 5, 4));
                 }
                 if (section == 5)
                 {

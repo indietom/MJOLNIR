@@ -244,7 +244,7 @@ namespace spel_project_1
                     foreach (boss b in bosses)
                     {
                         b.movment();
-                        b.attacking(enemyBullets);
+                        b.attacking(enemyBullets, enemies);
                         b.animation();
                         b.applyOffset(camera);
                         b.checkHealth(levelManager, ref gameState, explosions);
