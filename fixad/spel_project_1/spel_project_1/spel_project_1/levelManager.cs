@@ -69,9 +69,10 @@ namespace spel_project_1
                 if (section == 2)
                 {
                     player.x = 0;
-                    enemies.Add(new enemy(150, 385, 1, 4));
+                    enemies.Add(new enemy(118, 385, 1, 4));
                     enemies.Add(new enemy(224, 432, 1, 4));
                     enemies.Add(new enemy(368, 432, 1, 4));
+                    powerUps.Add(new powerUp(272, 448, 3));
                 }
                 if (section == 3)
                 {
@@ -79,13 +80,14 @@ namespace spel_project_1
                     enemies.Add(new enemy(192, 385, 1, 4));
                     enemies.Add(new enemy(240, 337, 1, 4));
                     enemies.Add(new enemy(384, 193, 1, 4));
-                    enemies.Add(new enemy(432, 145, 1, 4));
+                    enemies.Add(new enemy(432, 145, 1, 3));
                 }
                 if (section == 4)
                 {
                     player.x = 0;
                     enemies.Add(new enemy(150, 100, 2, 4));
                     enemies.Add(new enemy(500, 100, 2, 3));
+                    powerUps.Add(new powerUp(288, 112, 2));
                 }
                 if (section == 5)
                 {
@@ -103,12 +105,16 @@ namespace spel_project_1
                     enemies.Add(new enemy(300, 257, 1, 4));
                     enemies.Add(new enemy(500, 200, 3, 2, 70));
                     enemies.Add(new enemy(130, 81, 1, 3));
+                    powerUps.Add(new powerUp(256, 336, 1));
+                    powerUps.Add(new powerUp(64, 96, 4));
                 }
                 if (section == 7)
                 {
                     enemies.Add(new enemy(287, 257, 1, 4));
                     enemies.Add(new enemy(464, 226, 1, 4));
                     player.x = 0;
+                    enemies.Add(new enemy(178, 288, 3, 3, 50));
+                    enemies.Add(new enemy(448, 112, 1, 4));
                 }
                 if (section == 8)
                 {

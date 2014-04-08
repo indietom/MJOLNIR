@@ -404,7 +404,7 @@ namespace spel_project_1
                                 {
                                     if (b.type == 2)
                                     {
-                                        e.hp -= 3;
+                                        e.hp -= 5;
                                         explosions.Add(new explosion(b.x - 16, b.y - 16, 32));
                                     }
                                     else
