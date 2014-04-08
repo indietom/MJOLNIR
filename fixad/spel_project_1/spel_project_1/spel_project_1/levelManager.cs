@@ -85,6 +85,35 @@ namespace spel_project_1
                     enemies.Add(new enemy(150, 100, 2, 4));
                     enemies.Add(new enemy(500, 100, 2, 3));
                 }
+                if (section == 5)
+                {
+                    player.x = 0;
+                    enemies.Add(new enemy(200, 50, 3, 1, 100));
+                    enemies.Add(new enemy(248, 98, 3, 1, 100));
+                    enemies.Add(new enemy(296, 146, 3, 1, 100));
+                    enemies.Add(new enemy(344, 194, 3, 1, 100));
+                    enemies.Add(new enemy(392, 242, 3, 1, 100));
+                    enemies.Add(new enemy(440, 290, 3, 1, 100));
+                }
+                if (section == 6)
+                {
+                    player.x = 0;
+                    enemies.Add(new enemy(300, 257, 1, 4));
+                    enemies.Add(new enemy(500, 200, 3, 2, 70));
+                    enemies.Add(new enemy(130, 81, 1, 3));
+                }
+                if (section == 7)
+                {
+                    player.x = 0;
+                }
+                if (section == 8)
+                {
+                    player.x = 0;
+                }
+                if (section == 9)
+                {
+                    player.y = 0;
+                }
             }
 
             if (currentLevel == 3)
