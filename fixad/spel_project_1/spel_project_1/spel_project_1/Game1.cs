@@ -319,7 +319,7 @@ namespace spel_project_1
 
                         if (playerRC.Intersects(enemyRC))
                         {
-                            if (e.type == 3 || e.type == 2 || e.type == 5)
+                            if (e.type == 3 || e.type == 2 || e.type == 5 || e.type == 1)
                             {
                                 player.hp = 0;
                                 if (!player.dead)
