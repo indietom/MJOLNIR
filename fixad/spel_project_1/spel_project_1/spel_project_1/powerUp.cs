@@ -28,12 +28,15 @@ namespace spel_project_1
                     setSpriteCoords(1, frame(17));
                     break;
                 case 2:
+                    // rocket
                     setSpriteCoords(frame(1), frame(17));
                     break;
                 case 3:
+                    // shotgun
                     setSpriteCoords(frame(2), frame(17));
                     break;
                 case 4:
+                    // rifle
                     setSpriteCoords(frame(3), frame(17));
                     break;
             }

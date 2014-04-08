@@ -70,6 +70,8 @@ namespace spel_project_1
                 {
                     player.x = 0;
                     enemies.Add(new enemy(150, 385, 1, 4));
+                    enemies.Add(new enemy(224, 432, 1, 4));
+                    enemies.Add(new enemy(368, 432, 1, 4));
                 }
                 if (section == 3)
                 {
@@ -104,6 +106,8 @@ namespace spel_project_1
                 }
                 if (section == 7)
                 {
+                    enemies.Add(new enemy(287, 257, 1, 4));
+                    enemies.Add(new enemy(464, 226, 1, 4));
                     player.x = 0;
                 }
                 if (section == 8)
@@ -121,6 +125,7 @@ namespace spel_project_1
                 if (section == 1)
                 {
                     enemies.Add(new enemy(350, 97, 1, 4));
+                    powerUps.Add(new powerUp(432, 288, 3));
                     player.x = 50;
                     player.y = 300;
                 }
@@ -135,11 +140,13 @@ namespace spel_project_1
                 {
                     player.y = 0;
                     enemies.Add(new enemy(224, 226, 1, 4));
+                    powerUps.Add(new powerUp(240, 240, 2));
                 }
                 if (section == 4)
                 {
                     player.x = 0;
                     enemies.Add(new enemy(400, 70, 5, 4));
+                    powerUps.Add(new powerUp(320, 288, 4));
                 }
                 if (section == 5)
                 {
