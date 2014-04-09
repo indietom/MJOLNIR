@@ -55,16 +55,22 @@ namespace spel_project_1
         Texture2D spritesheet;
         Texture2D tilesheet;
         Texture2D tileSet5;
+        Texture2D tileSet7;
         Texture2D backgroundLevel5;
+        Texture2D backgroundLevel4;
+        SpriteFont bigFont;
         protected override void LoadContent()
         {
 
             gameFont = Content.Load<SpriteFont>("SpriteFont1");
+            bigFont = Content.Load<SpriteFont>("bigFont");
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             spritesheet = Content.Load<Texture2D>("spritesheet");
             backgroundLevel5 = Content.Load<Texture2D>("background5");
+            backgroundLevel4 = Content.Load<Texture2D>("bac_sky");
             tileSet5 = Content.Load<Texture2D>("tileSet5");
+            tileSet7 = Content.Load<Texture2D>("tileSet7");
             // TODO: use this.Content to load your game content here
         }
 
@@ -617,14 +623,23 @@ namespace spel_project_1
                     
                     break;
                 case "game":
+                    if (levelManager.currentLevel == 3)
+                    {
+                        spriteBatch.Draw(backgroundLevel4, new Vector2(0, 0), Color.White);
+                    }
                     if (levelManager.currentLevel != 4)
                     {
                         level.drawLevel(spriteBatch, spritesheet, levelManager.currentSection, camera, levelManager.currentSection.GetLength(1), levelManager.currentSection.GetLength(0));
                     }
-                    else
+                    if(levelManager.currentLevel == 4)
                     {
                         spriteBatch.Draw(backgroundLevel5, new Vector2(0, 0), Color.White);
                         level.drawLevel(spriteBatch, tileSet5, levelManager.currentSection, camera, levelManager.currentSection.GetLength(1), levelManager.currentSection.GetLength(0));
+                    }
+                    if (levelManager.currentLevel == 6)
+                    {
+                        spriteBatch.Draw(backgroundLevel5, new Vector2(0, 0), Color.White);
+                        level.drawLevel(spriteBatch, tileSet7, levelManager.currentSection, camera, levelManager.currentSection.GetLength(1), levelManager.currentSection.GetLength(0));
                     }
                     player.drawSpriteOffset(spriteBatch, spritesheet);
                     foreach (bullet b in bullets) { b.drawSpriteOffset(spriteBatch, spritesheet); }
@@ -650,6 +665,10 @@ namespace spel_project_1
                     if (player.gunType == 4)
                     {
                         spriteBatch.DrawString(gameFont, "Rifle: " + player.rifleAmmo, new Vector2(500, 30), Color.Coral);
+                    }
+                    if (player.dead)
+                    {
+                        spriteBatch.DrawString(bigFont, "You died!", new Vector2(320 - 3 * 24, 240 - 24), Color.Red);
                     }
                     break;
             }

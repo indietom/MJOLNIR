@@ -223,6 +223,51 @@ namespace spel_project_1
                     enemies.Add(new enemy(5 * 16, 390 - 6 - 64, 3, 4, 30 * 16 - 32));
                 }
             }
+            if (currentLevel == 6)
+            {
+                if (section == 1)
+                {
+                    camera.X = 0;
+                    camera.Y = 0;
+                    player.x = 50;
+                    player.y = 300;
+                }
+                if (section == 2)
+                {
+                    enemies.Add(new enemy(513, 338, 1, 3));
+                    enemies.Add(new enemy(956, 388, 1, 3));
+                    camera.X = 0;
+                    camera.Y = 0;
+                    player.setCoords(32, 32);
+                }
+                if (section == 3)
+                {
+                    enemies.Add(new enemy(540, 326, 3, 2, 16*10));
+                    camera.X = 0;
+                    camera.Y = 0;
+                    player.x = 32;
+                }
+                if (section == 4)
+                {
+                    enemies.Add(new enemy(473, 324, 1, 3));
+                    camera.X = 0;
+                    camera.Y = 0;
+                    player.x = 32;
+                }
+                if (section == 5)
+                {
+                    player.y = 350;
+                    player.x = 32;
+                    camera.X = 0;
+                    camera.Y = 0;
+                }
+                if (section == 6)
+                {
+                    player.y = 0;
+                    player.x = 320;
+                    bosses.Add(new boss(6, 539 - 32, 90));
+                }
+            }
         }
         public void checkSection(level level)
         {
