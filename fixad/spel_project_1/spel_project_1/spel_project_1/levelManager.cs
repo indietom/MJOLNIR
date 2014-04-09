@@ -188,6 +188,7 @@ namespace spel_project_1
                     enemies.Add(new enemy(780, 324, 1, 3));
                     camera.X = 0;
                     camera.Y = 0;
+                    powerUps.Add(new powerUp(921, 357 + 16, 2));
                     player.setCoords(300, 15);
                 }
                 if (section == 2)
@@ -197,6 +198,7 @@ namespace spel_project_1
                     camera.X = 0;
                     camera.Y = 0;
                     player.x = 32;
+                    powerUps.Add(new powerUp(617, 310 + 16, 2));
                 }
                 if (section == 3)
                 {
@@ -204,6 +206,9 @@ namespace spel_project_1
                     camera.X = 0;
                     camera.Y = 0;
                     player.x = 32;
+                    powerUps.Add(new powerUp(473, 421 + 16, 2));
+                    powerUps.Add(new powerUp(493, 421 + 16, 3));
+                    powerUps.Add(new powerUp(510, 421 + 16, 1));
                 }
                 if (section == 4)
                 {
@@ -239,6 +244,7 @@ namespace spel_project_1
                     camera.X = 0;
                     camera.Y = 0;
                     player.setCoords(32, 32);
+                    powerUps.Add(new powerUp(612 + 16, 338 + 16, 3));
                 }
                 if (section == 3)
                 {
@@ -253,6 +259,7 @@ namespace spel_project_1
                     camera.X = 0;
                     camera.Y = 0;
                     player.x = 32;
+                    powerUps.Add(new powerUp(407 + 16, 372 + 16, 3));
                 }
                 if (section == 5)
                 {
@@ -260,6 +267,8 @@ namespace spel_project_1
                     player.x = 32;
                     camera.X = 0;
                     camera.Y = 0;
+                    powerUps.Add(new powerUp(1076+16, 420 + 16, 1));
+                    powerUps.Add(new powerUp(1076 + 16, 420 + 16, 1));
                 }
                 if (section == 6)
                 {

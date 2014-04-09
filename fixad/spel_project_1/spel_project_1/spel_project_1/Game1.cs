@@ -286,7 +286,7 @@ namespace spel_project_1
                             if (pu.type == 1 && player.hp < 10)
                             {
                                 player.healed = true;
-                                player.hp += 1;
+                                player.hp += 3;
                             }
                             if (pu.type == 2)
                             {

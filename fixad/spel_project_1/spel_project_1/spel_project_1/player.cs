@@ -60,7 +60,12 @@ namespace spel_project_1
         public void checkHealth(healthbar healthbar, List<particle> particles, levelManager lm, List<enemy> enemies, List<bullet> bullets, List<powerUp> powerUps, ref Rectangle camera, List<enemyBullet> enemyBullets, List<boss> bosses)
         {
             Random random = new Random();
-       
+
+            if (hp >= 11)
+            {
+                hp = 10;
+            }
+
             healthbar.height = hp * 10;
 
             if (lm.currentLevel == 4 || lm.currentLevel == 3 || lm.currentLevel == 6)
@@ -73,6 +78,9 @@ namespace spel_project_1
 
             if (dead)
             {
+                shotgunAmmo = 0;
+                rifleAmmo = 0;
+                rocketAmmo = 0;
                 respawnCounter += 1;
                 if (respawnCounter >= 128)
                 {
