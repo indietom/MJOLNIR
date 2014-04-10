@@ -653,22 +653,51 @@ namespace spel_project_1
                     if (player.gunType == 1)
                     {
                         spriteBatch.DrawString(gameFont, "Pistol: Infinate", new Vector2(500, 30), Color.Coral);
+                        spriteBatch.Draw(spritesheet, new Vector2(20 + 5, 10+16), new Rectangle(34, 529, 5, 6), Color.White);
                     }
                     if (player.gunType == 2)
                     {
                         spriteBatch.DrawString(gameFont, "Rocket: " + player.rocketAmmo, new Vector2(500, 30), Color.Coral);
+                        spriteBatch.Draw(spritesheet, new Vector2(20 + 25, 10 + 16), new Rectangle(34, 529, 5, 6), Color.White);
                     }
                     if (player.gunType == 3)
                     {
                         spriteBatch.DrawString(gameFont, "Shotgun: " + player.shotgunAmmo, new Vector2(500, 30), Color.Coral);
+                        spriteBatch.Draw(spritesheet, new Vector2(20 + 45, 10 + 16), new Rectangle(34, 529, 5, 6), Color.White);
                     }
                     if (player.gunType == 4)
                     {
                         spriteBatch.DrawString(gameFont, "Rifle: " + player.rifleAmmo, new Vector2(500, 30), Color.Coral);
+                        spriteBatch.Draw(spritesheet, new Vector2(20 + 65, 10+16), new Rectangle(34, 529, 5, 6), Color.White);
                     }
                     if (player.dead)
                     {
                         spriteBatch.DrawString(bigFont, "You died!", new Vector2(320 - 3 * 24, 240 - 24), Color.Red);
+                    }
+                    spriteBatch.Draw(spritesheet, new Vector2(20, 10), new Rectangle(34, 496, 16, 16), Color.White);
+                    if (player.rocketAmmo >= 1)
+                    {
+                        spriteBatch.Draw(spritesheet, new Vector2(20 + 20, 10), new Rectangle(34, 496 + 16, 16, 16), Color.White);
+                    }
+                    else
+                    {
+                        spriteBatch.Draw(spritesheet, new Vector2(20 + 20, 10), new Rectangle(34, 496 + 16, 16, 16), Color.Tomato);
+                    }
+                    if (player.shotgunAmmo >= 1)
+                    {
+                        spriteBatch.Draw(spritesheet, new Vector2(20 + 40, 10), new Rectangle(34+16, 496, 16, 16), Color.White);
+                    }
+                    else
+                    {
+                        spriteBatch.Draw(spritesheet, new Vector2(20 + 40, 10), new Rectangle(34+16, 496, 16, 16), Color.Tomato);
+                    }
+                    if (player.rifleAmmo >= 1)
+                    {
+                        spriteBatch.Draw(spritesheet, new Vector2(20 + 60, 10), new Rectangle(34 + 16, 496+16, 16, 16), Color.White);
+                    }
+                    else
+                    {
+                        spriteBatch.Draw(spritesheet, new Vector2(20 + 60, 10), new Rectangle(34 + 16, 496 + 16, 16, 16), Color.Tomato);
                     }
                     break;
             }

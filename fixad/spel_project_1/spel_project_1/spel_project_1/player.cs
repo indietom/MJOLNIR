@@ -44,9 +44,9 @@ namespace spel_project_1
 
         public player()
         {
-            shotgunAmmo = 0;
-            rifleAmmo = 0;
-            rocketAmmo = 0;
+            shotgunAmmo = 10;
+            rifleAmmo = 10;
+            rocketAmmo = 10;
             gunType = 1;
             gravityCount = 0f;
             setSpriteCoords(1, imgx);

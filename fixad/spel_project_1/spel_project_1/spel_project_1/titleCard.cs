@@ -36,7 +36,7 @@ namespace spel_project_1
             if (cursor.Intersects(titleCardC) && cutSceneCount <= 0)
             {
                 imgy = frame(7);
-                if (mouse.LeftButton == ButtonState.Pressed && !lm.levelsBeaten[bossNumber])
+                if (mouse.LeftButton == ButtonState.Pressed && !lm.levelsBeaten[bossNumber] && bossNumber != 8)
                 {
                     lm.currentLevel = bossNumber;
                     cutSceneCount = 1;
@@ -50,7 +50,7 @@ namespace spel_project_1
             if (cutSceneCount >= 1)
             {
                 cutSceneCount += 1;
-                if (cutSceneCount >= 64 * 2)
+                if (cutSceneCount >= 64)
                 {
                     gameState = "game";
                     lm.roomTransition(ref player.inputActive, enemies, bullets, player, particles, powerUps, ref camera, enemyBullets, bosses);
