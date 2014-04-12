@@ -14,7 +14,6 @@ namespace spel_project_1
 {
     class levelManager
     {
-        // vi har inget just nu så den får vara oanvänd
         public string tilesheet;
         public bool[] levelsBeaten;
         public int currentLevel;
@@ -123,6 +122,7 @@ namespace spel_project_1
                 if (section == 9)
                 {
                     player.y = 0;
+                    bosses.Add(new boss(2, 539 - 32, 500));
                 }
             }
 

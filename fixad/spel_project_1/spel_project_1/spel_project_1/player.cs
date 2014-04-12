@@ -81,6 +81,7 @@ namespace spel_project_1
                 shotgunAmmo = 0;
                 rifleAmmo = 0;
                 rocketAmmo = 0;
+                gunType = 1;
                 respawnCounter += 1;
                 if (respawnCounter >= 128)
                 {

@@ -16,6 +16,8 @@ namespace spel_project_1
         public int changeHeightCount;
         public bool dive;
         public int diveCounter;
+        public bool reSurface;
+        public int reSurfaceCounter;
 
         public boss(int type2, float x2, float y2)
         {
@@ -40,6 +42,12 @@ namespace spel_project_1
                     setSize(65, 32);
                     setSpriteCoords(100, 430);
                     maxSwitchDirection = 30 * 16 - 32;
+                    direction = 3;
+                    break;
+                case 2:
+                    setSize(65, 65);
+                    setSpriteCoords(298, 430);
+                    maxSwitchDirection = 20 * 16 - 32;
                     direction = 3;
                     break;
             }
@@ -74,6 +82,44 @@ namespace spel_project_1
         {
             switch (type)
             {
+                case 2:
+                    firerate += 1;
+                    if (firerate >= 24)
+                    {
+                        if (y < 500)
+                        {
+                            enemyBullets.Add(new enemyBullet(x + 65 / 2, y + 65 / 2, 0, 1, 200));
+                            enemyBullets.Add(new enemyBullet(x + 65 / 2, y + 65 / 2, -180, 1, 200));
+                        }
+                        firerate = 0;
+                    }
+                    if (y >= 500)
+                    {
+                        reSurfaceCounter += 1;
+                    }
+                    if (reSurfaceCounter >= 100)
+                    {
+                        reSurface = true;
+                        reSurfaceCounter = 0;
+                    }
+                    if (reSurface && hp >= 1)
+                    {
+                        Console.WriteLine("lel");
+                        y -= 4;
+                        if (y <= 420 - 16 * 4)
+                        {
+                            y += 4;
+                            reSurface = false;
+                        }
+                    }
+                    if (!reSurface && hp >= 1)
+                    {
+                        if (y <= 500)
+                        {
+                            y += 1;
+                        }
+                    }
+                    break;
                 case 6:
                     if (y <= 100)
                     {
@@ -247,6 +293,33 @@ namespace spel_project_1
                     {
                         direction = 3;
                         switchDirection = 0;
+                    }
+                    break;
+                case 2:
+                    if (hp >= 1 && !reSurface && y >= 420)
+                    {
+                        if (direction == 3)
+                        {
+                            x -= 1;
+                        }
+                        else
+                        {
+                            x += 1;
+                        }
+                    }
+                    if (y >= 500)
+                    {
+                        switchDirection += 1;
+                        if (direction == 3 && switchDirection >= maxSwitchDirection)
+                        {
+                            direction = 4;
+                            switchDirection = 0;
+                        }
+                        if (direction == 4 && switchDirection >= maxSwitchDirection)
+                        {
+                            direction = 3;
+                            switchDirection = 0;
+                        }
                     }
                     break;
                 case 4:
