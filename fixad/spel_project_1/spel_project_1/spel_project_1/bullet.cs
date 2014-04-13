@@ -46,11 +46,15 @@ namespace spel_project_1
             }
         }
 
-        public void update(Rectangle camera, List<particle> particles)
+        public void update(Rectangle camera, List<particle> particles, SoundEffect shootSfx)
         {
             Random random = new Random();
             applyOffset(camera);
             lifeTime += 1;
+            if (lifeTime == 1)
+            {
+                shootSfx.Play();
+            }
             if (lifeTime >= maxLifeTime)
             {
                 destroy = true;

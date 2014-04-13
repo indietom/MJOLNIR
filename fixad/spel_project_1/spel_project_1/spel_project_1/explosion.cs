@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework.Audio;
 
 namespace spel_project_1
 {
@@ -29,9 +30,13 @@ namespace spel_project_1
                     break;
             }
         }
-        public void animation()
+        public void animation(SoundEffect explosionSfx)
         {
             animationCount += 1;
+            if (animationCount == 1)
+            {
+                explosionSfx.Play();
+            }
             if (size <= 32)
             {
                 if (animationCount >= 5)

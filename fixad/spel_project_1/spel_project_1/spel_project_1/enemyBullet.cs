@@ -33,10 +33,14 @@ namespace spel_project_1
                     break;
             }
         }
-        public void update(Rectangle camera)
+        public void update(Rectangle camera, SoundEffect shoot2Sfx)
         {
             applyOffset(camera);
             lifeTime += 1;
+            if (lifeTime == 1)
+            {
+                shoot2Sfx.Play();
+            }
             if (lifeTime >= maxLifeTime)
             {
                 destroy = true;

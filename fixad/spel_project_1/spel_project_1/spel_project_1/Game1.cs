@@ -62,9 +62,14 @@ namespace spel_project_1
         Texture2D backgroundLevel5;
         Texture2D backgroundLevel4;
         SpriteFont bigFont;
+        SoundEffect explosionSfx;
+        SoundEffect shootSfx;
+        SoundEffect shoot2Sfx;
         protected override void LoadContent()
         {
-
+            explosionSfx = Content.Load<SoundEffect>("explosion_sfx");
+            shootSfx = Content.Load<SoundEffect>("shoot_sfx");
+            shoot2Sfx = Content.Load<SoundEffect>("shoot2_sfx");
             gameFont = Content.Load<SpriteFont>("SpriteFont1");
             bigFont = Content.Load<SpriteFont>("bigFont");
             // Create a new SpriteBatch, which can be used to draw textures.
@@ -314,7 +319,7 @@ namespace spel_project_1
 
                     foreach (explosion ex in explosions)
                     {
-                        ex.animation();
+                        ex.animation(explosionSfx);
                         ex.applyOffset(camera);
                     }
 
@@ -393,7 +398,7 @@ namespace spel_project_1
                     foreach (enemyBullet eb in enemyBullets)
                     {
                         eb.movment();
-                        eb.update(camera);
+                        eb.update(camera, shoot2Sfx);
                         ebulletRC = new Rectangle((int)eb.renderX, (int)eb.renderY, eb.width, eb.height);
                         if (playerRC.Intersects(ebulletRC))
                         {
@@ -406,7 +411,7 @@ namespace spel_project_1
                     foreach (bullet b in bullets)
                     {
                         b.movment();
-                        b.update(camera, particles);
+                        b.update(camera, particles, shootSfx);
                         bulletRC = new Rectangle((int)b.renderX, (int)b.renderY, b.width, b.height);
                         foreach (enemy e in enemies)
                         {
