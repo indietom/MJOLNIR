@@ -323,7 +323,7 @@ namespace spel_project_1
                 }
                 if (shoothingFalse2)
                 {
-                    if (keyboard.IsKeyUp(Keys.X))
+                    if (keyboard.IsKeyUp(Keys.Space))
                     {
                         shoothingFalse2 = false;
                     }

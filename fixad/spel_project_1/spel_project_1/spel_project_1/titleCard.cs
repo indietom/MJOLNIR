@@ -28,13 +28,14 @@ namespace spel_project_1
                 imgx = 1;
             }
         }
-        public void update(levelManager lm, ref string gameState, List<enemy> enemies, List<bullet> bullets, player player, List<particle> particles, List<powerUp> powerUps, Rectangle camera, List<enemyBullet> enemyBullets, List<boss> bosses)
+        public void update(levelManager lm, ref string gameState, List<enemy> enemies, List<bullet> bullets, player player, List<particle> particles, List<powerUp> powerUps, Rectangle camera, List<enemyBullet> enemyBullets, List<boss> bosses, ref bool gameStarted)
         {
             MouseState mouse = Mouse.GetState();
             Rectangle cursor = new Rectangle(mouse.X, mouse.Y, 8, 8);
             Rectangle titleCardC = new Rectangle((int)x, (int)y, 32, 32);
             if (cursor.Intersects(titleCardC) && cutSceneCount <= 0)
             {
+                gameStarted = true;
                 imgy = frame(7);
                 if (mouse.LeftButton == ButtonState.Pressed && !lm.levelsBeaten[bossNumber] && bossNumber != 8)
                 {

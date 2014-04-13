@@ -26,6 +26,8 @@ namespace spel_project_1
         }
 
         saveState saveState = new saveState();
+        bool gameStarted;
+        int gameStartedCount;
         string gameState = "menu";
         healthbar healthbar = new healthbar();
         levelManager levelManager = new levelManager(); 
@@ -48,6 +50,7 @@ namespace spel_project_1
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            gameStarted = false;
             camera = new Rectangle(0, 0, 320, 240);
             menu = new menu(titleCards);
             base.Initialize();
@@ -211,7 +214,7 @@ namespace spel_project_1
                     bullets.Clear();
                     foreach (titleCard tc in titleCards)
                     {
-                        tc.update(levelManager, ref gameState, enemies, bullets, player, particles, powerUps, camera, enemyBullets, bosses);
+                        tc.update(levelManager, ref gameState, enemies, bullets, player, particles, powerUps, camera, enemyBullets, bosses, ref gameStarted);
                         if (levelManager.levelsBeaten[tc.bossNumber])
                         {
                             tc.imgy = tc.frame(6);
@@ -220,6 +223,11 @@ namespace spel_project_1
                     //levelManager.resetLevel(enemies, bullets);
                     break;
                 case "game":
+                    if (gameStarted)
+                    {
+                        gameStartedCount += 1;
+                    }
+
                     Rectangle playerFeet = new Rectangle((int)player.x, (int)player.y + 2, 32, 32);
                     Rectangle playerBodyL = new Rectangle((int)player.x - 3, (int)player.y - 3, 32, 32);
                     Rectangle playerBodyR = new Rectangle((int)player.x + 3, (int)player.y - 3, 32, 32);
@@ -626,7 +634,7 @@ namespace spel_project_1
                         levelManager.currentLevel = 8;
                         gameState = "game";
                     }
-                        
+                    spriteBatch.DrawString(gameFont, "Use the mouse to pick level", new Vector2(0, 0), Color.Tomato);
                     break;
                 case "game":
                     if (levelManager.currentLevel == 3)
@@ -704,6 +712,18 @@ namespace spel_project_1
                     else
                     {
                         spriteBatch.Draw(spritesheet, new Vector2(20 + 60, 10), new Rectangle(34 + 16, 496 + 16, 16, 16), Color.Tomato);
+                    }
+                    if (gameStartedCount <= 128 * 1)
+                    {
+                        spriteBatch.DrawString(gameFont, "Arrow keys or WASD to Move, W or Z to jump", new Vector2(50, 50), Color.Gold);
+                    }
+                    if (gameStartedCount <= 128 * 3 && gameStartedCount >= 128)
+                    {
+                        spriteBatch.DrawString(gameFont, "X or Space to shoot, press 1 for pistol, 2 for an rpg, 3 for a shotgun and 4 for an smg", new Vector2(50, 50), Color.Gold);
+                    }
+                    if (gameStartedCount <= 128 * 5 && gameStartedCount >= 128 * 3)
+                    {
+                        spriteBatch.DrawString(gameFont, "You can see your avalibe guns next to the health bar and the ammo in the right corner \n when you have the gun equiped", new Vector2(50, 50), Color.Gold);
                     }
                     break;
             }
