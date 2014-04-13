@@ -615,12 +615,18 @@ namespace spel_project_1
                 case "start screen":
                     break;
                 case "menu":
+                    player.hp = 10;
                     foreach (titleCard tc in titleCards)
                     {
                         tc.drawSprite(spriteBatch, spritesheet);
                         menu.drawMenu(spriteBatch, spritesheet, tc.cutSceneCount);
                     }
-                    
+                    if (levelManager.levelsBeaten[0] && levelManager.levelsBeaten[1] && levelManager.levelsBeaten[2] && levelManager.levelsBeaten[3] && levelManager.levelsBeaten[3] && levelManager.levelsBeaten[4] && levelManager.levelsBeaten[5] && levelManager.levelsBeaten[6] && levelManager.levelsBeaten[7])
+                    {
+                        levelManager.currentLevel = 8;
+                        gameState = "game";
+                    }
+                        
                     break;
                 case "game":
                     if (levelManager.currentLevel == 3)
@@ -636,7 +642,7 @@ namespace spel_project_1
                         spriteBatch.Draw(backgroundLevel5, new Vector2(0, 0), Color.White);
                         level.drawLevel(spriteBatch, tileSet5, levelManager.currentSection, camera, levelManager.currentSection.GetLength(1), levelManager.currentSection.GetLength(0));
                     }
-                    if (levelManager.currentLevel == 6)
+                    if (levelManager.currentLevel == 6 || levelManager.currentLevel == 8)
                     {
                         spriteBatch.Draw(backgroundLevel5, new Vector2(0, 0), Color.White);
                         level.drawLevel(spriteBatch, tileSet7, levelManager.currentSection, camera, levelManager.currentSection.GetLength(1), levelManager.currentSection.GetLength(0));
