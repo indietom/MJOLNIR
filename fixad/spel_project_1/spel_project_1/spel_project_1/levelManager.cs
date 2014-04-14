@@ -277,6 +277,62 @@ namespace spel_project_1
                     bosses.Add(new boss(6, 539 - 32, 90));
                 }
             }
+
+            if (currentLevel == 5)
+            {
+                if (section == 1)
+                {
+                    player.x = 400;
+                    player.y = 300;
+                }
+                if (section == 2)
+                {
+                    player.x = 0;
+                    enemies.Add(new enemy(80, 400, 1, 4));
+                    enemies.Add(new enemy(288, 368, 1, 4));
+                    powerUps.Add(new powerUp(288, 448, 4));
+                }
+                if (section == 3)
+                {
+                    player.x = 0;
+                    enemies.Add(new enemy(544, 432, 3, 4, 60));
+                    enemies.Add(new enemy(368, 288, 1, 4));
+                    powerUps.Add(new powerUp(544, 448, 2));
+                }
+                if (section == 4)
+                {
+                    player.x = 0;
+                    enemies.Add(new enemy(352, 336, 1, 4));
+                    enemies.Add(new enemy(448, 416, 2, 4));
+                    enemies.Add(new enemy(96, 416, 2, 4));
+                    powerUps.Add(new powerUp(544, 448, 3));
+                }
+                if (section == 5)
+                {
+                    player.x = 0;
+                    enemies.Add(new enemy(432, 336, 2, 4));
+                }
+                if (section == 6)
+                {
+                    player.x = 0;
+                    enemies.Add(new enemy(400, 240, 3, 2, 60));
+                    enemies.Add(new enemy(528, 256, 1, 4));
+                }
+                if (section == 7)
+                {
+                    player.x = 0;
+                    enemies.Add(new enemy(480, 304, 1, 4));
+                    enemies.Add(new enemy(80, 208, 3, 1, 100));
+                }
+                if (section == 8)
+                {
+                    player.x = 0;
+                }
+                if (section == 9)
+                {
+                    player.x = 0;
+                }
+            }
         }
         public void checkSection(level level)
         {
