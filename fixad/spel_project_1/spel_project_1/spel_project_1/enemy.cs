@@ -58,7 +58,7 @@ namespace spel_project_1
                     break;
                 case 4:
                     // chopper
-                    setSpriteCoords(1, 1);
+                    setSpriteCoords(frame(11), frame(5));
                     setSize(32, 32);
                     hp = 5;
                     break;
@@ -97,14 +97,14 @@ namespace spel_project_1
                     break;
                 case 3:
                     // spike ball thing
-                    setSpriteCoords(1, 1);
+                    setSpriteCoords(364, 133);
                     setSize(32, 32);
                     hp = 1;
                     vulnerable = false;
                     break;
                 case 4:
                     // chopper
-                    setSpriteCoords(1, 1);
+                    setSpriteCoords(frame(11), frame(5));
                     setSize(32, 32);
                     hp = 5;
                     break;

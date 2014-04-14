@@ -207,12 +207,12 @@ namespace spel_project_1
                     {
                         if (direction == 3)
                         {
-                            bullets.Add(new bullet(x + 16, y + 10, -180, 200, 1));
+                            bullets.Add(new bullet(x + 16, y + 10, -180, 100, 1));
                             particles.Add(new particle(x + 16, y + 10, 200, 3, "yellow", -70, 7));
                         }
                         else
                         {
-                            bullets.Add(new bullet(x + 16, y + 10, 0, 200, 1));
+                            bullets.Add(new bullet(x + 16, y + 10, 0, 100, 1));
                             particles.Add(new particle(x + 16, y + 10, 200, 3, "yellow", -110, 7));
                         }
                         fireRate = 1;
@@ -232,11 +232,11 @@ namespace spel_project_1
                         }
                         if (direction == 3)
                         {
-                            bullets.Add(new bullet(x + 16, y + 10, -180, 200, 2));
+                            bullets.Add(new bullet(x + 16, y + 10, -180, 100, 2));
                         }
                         else
                         {
-                            bullets.Add(new bullet(x + 16, y + 10, 0, 200, 2));
+                            bullets.Add(new bullet(x + 16, y + 10, 0, 100, 2));
                         }
                         fireRate = 1;
                         shootingFalse3 = true;
@@ -255,15 +255,15 @@ namespace spel_project_1
                         }
                         if (direction == 3)
                         {
-                            bullets.Add(new bullet(x + 16, y + 10, -185, 200, 1));
-                            bullets.Add(new bullet(x + 16, y + 10, -180, 200, 1));
-                            bullets.Add(new bullet(x + 16, y + 10, -175, 200, 1));
+                            bullets.Add(new bullet(x + 16, y + 10, -185, 100, 1));
+                            bullets.Add(new bullet(x + 16, y + 10, -180, 100, 1));
+                            bullets.Add(new bullet(x + 16, y + 10, -175, 100, 1));
                         }
                         else
                         {
-                            bullets.Add(new bullet(x + 16, y + 10, -5, 200, 1));
-                            bullets.Add(new bullet(x + 16, y + 10, 0, 200, 1));
-                            bullets.Add(new bullet(x + 16, y + 10, 5, 200, 1));
+                            bullets.Add(new bullet(x + 16, y + 10, -5, 100, 1));
+                            bullets.Add(new bullet(x + 16, y + 10, 0, 100, 1));
+                            bullets.Add(new bullet(x + 16, y + 10, 5, 100, 1));
                         }
                         fireRate = 1;
                         shootingFalse3 = true;
@@ -294,12 +294,12 @@ namespace spel_project_1
                         }
                         if (direction == 3)
                         {
-                            bullets.Add(new bullet(x + 16, y + 10, -180, 200, 1));
+                            bullets.Add(new bullet(x + 16, y + 10, -180, 100, 1));
                             particles.Add(new particle(x + 16, y + 10, 200, 3, "yellow", -70, random.Next(4, 7)));
                         }
                         else
                         {
-                            bullets.Add(new bullet(x + 16, y + 10, 0, 200, 1));
+                            bullets.Add(new bullet(x + 16, y + 10, 0, 100, 1));
                             particles.Add(new particle(x + 16, y + 10, 200, 3, "yellow", -110, random.Next(4, 7)));
                         }
                         fireRate = 16;
