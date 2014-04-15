@@ -44,9 +44,9 @@ namespace spel_project_1
 
         public player()
         {
-            shotgunAmmo = 10;
-            rifleAmmo = 10;
-            rocketAmmo = 10;
+            shotgunAmmo = 0;
+            rifleAmmo = 0;
+            rocketAmmo = 0;
             gunType = 1;
             gravityCount = 0f;
             setSpriteCoords(1, imgx);
@@ -68,12 +68,19 @@ namespace spel_project_1
 
             healthbar.height = hp * 10;
 
-            if (lm.currentLevel == 4 || lm.currentLevel == 3 || lm.currentLevel == 6)
+            if (lm.currentLevel == 4 || lm.currentLevel == 3 || lm.currentLevel == 6 || lm.currentLevel == 5)
             {
                 if (y >= 500)
                 {
                     hp = 0;
                 }
+            }
+            if (lm.currentLevel == 3)
+            {
+                if(x <= -100)
+                    hp = 0;
+                if (x >= 740)
+                    hp = 0;
             }
 
             if (dead)
@@ -86,6 +93,11 @@ namespace spel_project_1
                 if (respawnCounter >= 128)
                 {
                     lm.section = 1;
+                    if (lm.currentLevel == 5)
+                    {
+                        // det fanns en konstig bug på din banna så jag fick göra detta
+                        setCoords(100, 100);
+                    }
                     lm.roomTransition(ref inputActive, enemies, bullets, new player(), particles, powerUps, ref camera, enemyBullets, bosses); 
                     hp = 10;
                     respawnCounter = 0;
@@ -155,7 +167,11 @@ namespace spel_project_1
                 camera.X = (int)x;
                 camera.Y = 0;
                 setCoords(210, 100);
+                rocketAmmo += 1000;
+                rifleAmmo += 1000;
+                shotgunAmmo += 1000;
                 hp = 10;
+                respawnCounter = 0;
             }
             if (keyboard.IsKeyDown(Keys.F1))
             {

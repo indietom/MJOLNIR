@@ -35,7 +35,7 @@ namespace spel_project_1
         public void drawMenu(SpriteBatch spriteBatch, Texture2D spritesheet, int cutSceneCount)
         {
             MouseState mouse = Mouse.GetState();
-            spriteBatch.Draw(spritesheet, new Vector2(mouse.X, mouse.Y), new Rectangle(0, 0, 8, 8), Color.White);
+            spriteBatch.Draw(spritesheet, new Vector2(mouse.X, mouse.Y), new Rectangle(67, 529, 7, 7), Color.White);
             if (cutSceneCount >= 1)
             {
                 // rite boss grej

@@ -27,8 +27,9 @@ namespace spel_project_1
 
         saveState saveState = new saveState();
         bool gameStarted;
+        bool drawCutScene;
         int gameStartedCount;
-        string gameState = "menu";
+        string gameState = "start screen";
         healthbar healthbar = new healthbar();
         levelManager levelManager = new levelManager(); 
         Rectangle camera;
@@ -58,9 +59,15 @@ namespace spel_project_1
         Texture2D spritesheet;
         Texture2D tilesheet;
         Texture2D tileSet5;
+        Texture2D tileSet6;
         Texture2D tileSet7;
+        Texture2D tileSet3;
+        Texture2D tileSet2;
+        Texture2D startScreen;
+        Texture2D backgroundLevel3;
         Texture2D backgroundLevel5;
         Texture2D backgroundLevel4;
+        Texture2D backgroundLevel6;
         SpriteFont bigFont;
         SoundEffect explosionSfx;
         SoundEffect shootSfx;
@@ -76,9 +83,15 @@ namespace spel_project_1
             spriteBatch = new SpriteBatch(GraphicsDevice);
             spritesheet = Content.Load<Texture2D>("spritesheet");
             backgroundLevel5 = Content.Load<Texture2D>("background5");
+            backgroundLevel6 = Content.Load<Texture2D>("background6");
             backgroundLevel4 = Content.Load<Texture2D>("bac_sky");
+            backgroundLevel3 = Content.Load<Texture2D>("bac_caveWall");
             tileSet5 = Content.Load<Texture2D>("tileSet5");
+            tileSet3 = Content.Load<Texture2D>("tileSet3");
+            tileSet6 = Content.Load<Texture2D>("tileSet6");
             tileSet7 = Content.Load<Texture2D>("tileSet7");
+            tileSet2 = Content.Load<Texture2D>("tileSet2");
+            startScreen = Content.Load<Texture2D>("startScreen");
             // TODO: use this.Content to load your game content here
         }
 
@@ -460,6 +473,11 @@ namespace spel_project_1
                     }
                     if (collisionTile(playerBodyL, levelManager.currentSectionC, 1))
                     {
+                        if (player.onGround)
+                        {
+                            player.imgx = 1;
+                            player.animationCount = 0;
+                        }
                         player.onWall = true;
                         player.inputActive = false;
                         player.x += 3;
@@ -471,6 +489,11 @@ namespace spel_project_1
                     }
                     if (collisionTile(playerBodyR, levelManager.currentSectionC, 1))
                     {
+                        if (player.onGround)
+                        {
+                            player.imgx = 1;
+                            player.animationCount = 0;
+                        }
                         player.onWall = true;
                         player.inputActive = false;
                         player.x -= 3;
@@ -626,6 +649,7 @@ namespace spel_project_1
             switch (gameState)
             {
                 case "start screen":
+                    spriteBatch.Draw(startScreen, new Vector2(0, 0), Color.White);
                     break;
                 case "menu":
                     player.hp = 10;
@@ -639,21 +663,35 @@ namespace spel_project_1
                         levelManager.currentLevel = 8;
                         gameState = "game";
                     }
+                    
                     spriteBatch.DrawString(gameFont, "Use the mouse to pick level", new Vector2(0, 0), Color.Tomato);
                     break;
                 case "game":
+                    
+                    if (levelManager.currentLevel != 4) 
+                    {
+                        level.drawLevel(spriteBatch, spritesheet, levelManager.currentSection, camera, levelManager.currentSection.GetLength(1), levelManager.currentSection.GetLength(0));
+                    }
+                    if (levelManager.currentLevel == 2)
+                    {
+                        spriteBatch.Draw(backgroundLevel3, new Vector2(0, 0), Color.White);
+                        level.drawLevel(spriteBatch, tileSet2, levelManager.currentSection, camera, levelManager.currentSection.GetLength(1), levelManager.currentSection.GetLength(0));
+
+                    }
                     if (levelManager.currentLevel == 3)
                     {
                         spriteBatch.Draw(backgroundLevel4, new Vector2(0, 0), Color.White);
-                    }
-                    if (levelManager.currentLevel != 4)
-                    {
-                        level.drawLevel(spriteBatch, spritesheet, levelManager.currentSection, camera, levelManager.currentSection.GetLength(1), levelManager.currentSection.GetLength(0));
+                        level.drawLevel(spriteBatch, tileSet3, levelManager.currentSection, camera, levelManager.currentSection.GetLength(1), levelManager.currentSection.GetLength(0));
                     }
                     if(levelManager.currentLevel == 4)
                     {
                         spriteBatch.Draw(backgroundLevel5, new Vector2(0, 0), Color.White);
                         level.drawLevel(spriteBatch, tileSet5, levelManager.currentSection, camera, levelManager.currentSection.GetLength(1), levelManager.currentSection.GetLength(0));
+                    }
+                    if (levelManager.currentLevel == 5)
+                    {
+                        spriteBatch.Draw(backgroundLevel6, new Vector2(0, 0), Color.White);
+                        level.drawLevel(spriteBatch, tileSet6, levelManager.currentSection, camera, levelManager.currentSection.GetLength(1), levelManager.currentSection.GetLength(0));
                     }
                     if (levelManager.currentLevel == 6 || levelManager.currentLevel == 8)
                     {

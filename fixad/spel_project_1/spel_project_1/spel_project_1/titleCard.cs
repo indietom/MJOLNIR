@@ -51,7 +51,7 @@ namespace spel_project_1
             if (cutSceneCount >= 1)
             {
                 cutSceneCount += 1;
-                if (cutSceneCount >= 64)
+                if (cutSceneCount >= 16)
                 {
                     gameState = "game";
                     lm.roomTransition(ref player.inputActive, enemies, bullets, player, particles, powerUps, ref camera, enemyBullets, bosses);

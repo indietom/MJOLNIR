@@ -80,11 +80,12 @@ namespace spel_project_1
         }
         public void attacking(List<enemyBullet> enemyBullets, List<enemy> enemies)
         {
+            Random random = new Random();
             switch (type)
             {
                 case 2:
                     firerate += 1;
-                    if (firerate >= 24)
+                    if (firerate >= 24 && hp >= 1)
                     {
                         if (y < 500)
                         {
@@ -100,7 +101,7 @@ namespace spel_project_1
                     if (reSurfaceCounter >= 100)
                     {
                         reSurface = true;
-                        reSurfaceCounter = 0;
+                        reSurfaceCounter = random.Next(64);
                     }
                     if (reSurface && hp >= 1)
                     {
@@ -128,7 +129,7 @@ namespace spel_project_1
                     if (diveCounter >= 100)
                     {
                         dive = true;
-                        diveCounter = 0;
+                        diveCounter = random.Next(64);
                     }
                     if (dive && hp >= 1)
                     {

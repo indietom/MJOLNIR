@@ -282,8 +282,11 @@ namespace spel_project_1
             {
                 if (section == 1)
                 {
-                    player.x = 400;
-                    player.y = 300;
+                    player.setCoords(100, 100);
+                    player.hp = 10;
+                    player.respawnCounter = 0;
+                    player.dead = false;
+                    Console.WriteLine(player.x+"\n"+player.y);
                 }
                 if (section == 2)
                 {
