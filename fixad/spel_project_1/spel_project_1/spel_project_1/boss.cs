@@ -18,6 +18,8 @@ namespace spel_project_1
         public int diveCounter;
         public bool reSurface;
         public int reSurfaceCounter;
+        public bool snipepos;
+        public int snipeposCount;
 
         public boss(int type2, float x2, float y2)
         {
@@ -26,6 +28,11 @@ namespace spel_project_1
             hp = 20;
             switch (type)
             {
+                case 5:
+                    setSize(32, 32);
+                    setSpriteCoords(166, 496);
+                    
+                    break;
                 case 6:
                     setSize(65, 65);
                     setSpriteCoords(166, 430);
@@ -83,6 +90,53 @@ namespace spel_project_1
             Random random = new Random();
             switch (type)
             {
+                case 5:
+                    if (!snipepos)
+                    {
+                        setSpriteCoords(199, 496);
+                    }
+                    else
+                    {
+                        setSpriteCoords(166, 496);
+                    }
+                    if (hp <= 0)
+                    {
+                        setSpriteCoords(199, 496);
+                        y += 7;
+                    }
+                    if (snipepos && hp >= 1)
+                    {
+                        firerate += 1;
+                        if (firerate == 16 || firerate == 32 || firerate == 32+16)
+                        {
+                            enemyBullets.Add(new enemyBullet(x + 16, y + 16, -270, 1, 200));
+                        }
+                        if (firerate >= 64+32)
+                        {
+                            firerate = 0;
+                        }
+                    }
+                    diveCounter += 1;
+                    if (diveCounter >= 500 && hp >= 1 && snipepos)
+                    {
+                        snipepos = false;
+                        diveCounter = 0;
+                    }
+                    if (!snipepos)
+                    {
+                        y += 3;
+                    }
+                    if (y >= 700 && hp >= 1)
+                    {
+                        x = random.Next(640 - 32);
+                        y = -32;
+                        snipepos = true;
+                    }
+                    if (y < 0 && snipepos)
+                    {
+                        y += 1;
+                    }
+                    break;
                 case 2:
                     firerate += 1;
                     if (firerate >= 24 && hp >= 1)
