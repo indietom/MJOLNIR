@@ -24,7 +24,7 @@ namespace spel_project_1
         public levelManager()
         {
             levelsBeaten = new bool[9];
-            section = 9;
+            section = 1;
             currentLevel = 5;
         }
         public void resetLevel(List<enemy> enemies, List<bullet> bullets)
@@ -337,6 +337,47 @@ namespace spel_project_1
                     player.x = 0;
                     bosses.Add(new boss(5, 539 - 32, 90));
                 }
+            }
+            if (currentLevel == 7)
+            {
+                if (section == 1)
+                {
+                    
+                }
+                if (section == 2)
+                {
+                    player.x = 0;
+
+                }
+                if (section == 3)
+                {
+                    player.x = 0;
+                }
+                if (section == 4)
+                {
+                    player.x = 0;
+                }
+                if (section == 5)
+                {
+                    player.x = 0;
+                }
+                if (section == 6)
+                {
+                    player.x = 0;
+                }
+                if (section == 7)
+                {
+                    player.x = 0;
+                }
+                if (section == 8)
+                {
+                    player.x = 0;
+                }
+                if (section == 9)
+                {
+                    player.x = 0;
+                }
+
             }
         }
         public void checkSection(level level)
