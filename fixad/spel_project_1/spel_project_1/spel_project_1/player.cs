@@ -68,7 +68,7 @@ namespace spel_project_1
 
             healthbar.height = hp * 10;
 
-            if (lm.currentLevel == 4 || lm.currentLevel == 3 || lm.currentLevel == 6 || lm.currentLevel == 5)
+            if (lm.currentLevel == 4 || lm.currentLevel == 3 || lm.currentLevel == 6 || lm.currentLevel == 5 || lm.currentLevel == 0)
             {
                 if (y >= 500)
                 {
@@ -101,17 +101,9 @@ namespace spel_project_1
                     lm.roomTransition(ref inputActive, enemies, bullets, new player(), particles, powerUps, ref camera, enemyBullets, bosses); 
                     hp = 10;
                     respawnCounter = 0;
-                    if(lm.currentLevel == 4)
-                        setCoords(300, 15);
-                    if (lm.currentLevel == 3)
-                        setCoords(50, 300);
-                    if (lm.currentLevel == 6)
-                    {
-                        setCoords(50, 300);
-                        camera.X = 0;
-                        camera.Y = 0;
-                    }
-                    
+                    setCoords(50, 300);
+                    camera.X = 0;
+                    camera.Y = 0;
                 }
             }
 

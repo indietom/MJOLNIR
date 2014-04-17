@@ -45,16 +45,34 @@ namespace spel_project_1
             {
                 if (section == 1)
                 {
-                    enemies.Add(new enemy(100, 100, 3, 1, 50));
-                    enemies.Add(new enemy(200, 200, 2, 4));
-                    enemies.Add(new enemy(300, 200, 4, 4, 100));
-                    powerUps.Add(new powerUp(200, 300, 3));
-                    player.x = 500;
-                    player.y = 100;
+                    player.setCoords(100, 100);
+                    enemies.Add(new enemy(853, 338, 1, 3));
+                    camera.X = 0;
                 }
                 if (section == 2)
                 {
-                    enemies.Add(new enemy(200, 200, 2, 4));
+                    enemies.Add(new enemy(437, 404, 1, 3));
+                    enemies.Add(new enemy(665, 370, 3, 3, 655-503));
+                    camera.X = 0;
+                    player.x = 17;
+                }
+                if (section == 3)
+                {
+                    enemies.Add(new enemy(467, 436-16, 2, 3)); 
+                    camera.X = 0; 
+                    player.y = 0;
+                    player.x = 17;
+                }
+                if (section == 4)
+                {
+                    camera.X = 0;
+                    player.x = 17;
+                }
+                if (section == 5)
+                {
+                    camera.X = 0;
+                    player.y = 0;
+                    player.x = 320;
                 }
 
             }

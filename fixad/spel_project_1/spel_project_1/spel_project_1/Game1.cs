@@ -63,6 +63,7 @@ namespace spel_project_1
         Texture2D tileSet7;
         Texture2D tileSet3;
         Texture2D tileSet2;
+        Texture2D tileSet0;
         Texture2D startScreen;
         Texture2D backgroundLevel3;
         Texture2D backgroundLevel5;
@@ -91,6 +92,7 @@ namespace spel_project_1
             tileSet6 = Content.Load<Texture2D>("tileSet6");
             tileSet7 = Content.Load<Texture2D>("tileSet7");
             tileSet2 = Content.Load<Texture2D>("tileSet2");
+            tileSet0 = Content.Load<Texture2D>("tileSet0");
             startScreen = Content.Load<Texture2D>("startScreen");
             // TODO: use this.Content to load your game content here
         }
@@ -672,6 +674,11 @@ namespace spel_project_1
                     if (levelManager.currentLevel != 4) 
                     {
                         level.drawLevel(spriteBatch, spritesheet, levelManager.currentSection, camera, levelManager.currentSection.GetLength(1), levelManager.currentSection.GetLength(0));
+                    }
+                    if (levelManager.currentLevel == 0)
+                    {
+                        spriteBatch.Draw(backgroundLevel4, new Vector2(0, 0), Color.White);
+                        level.drawLevel(spriteBatch, tileSet0, levelManager.currentSection, camera, levelManager.currentSection.GetLength(1), levelManager.currentSection.GetLength(0));
                     }
                     if (levelManager.currentLevel == 2)
                     {
