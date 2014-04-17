@@ -342,7 +342,7 @@ namespace spel_project_1
                         e.attacking(enemyBullets, player, particles);
                         e.animation();
                         e.applyOffset(camera);
-                        e.checkHealth(explosions);
+                        e.checkHealth(explosions, particles);
                         enemyC = new Rectangle((int)e.x, (int)e.y + 2, e.width, e.height);
                         enemyCL = new Rectangle((int)e.x - 3, (int)e.y - 5, e.width, e.height);
                         enemyCR = new Rectangle((int)e.x + 3, (int)e.y - 5, e.width, e.height);
@@ -431,6 +431,7 @@ namespace spel_project_1
                             enemyRC = new Rectangle((int)e.renderX, (int)e.renderY, e.width, e.height);
                             if (bulletRC.Intersects(enemyRC))
                             {
+                                e.hit = true;
                                 b.destroy = true;
                                 if (e.vulnerable)
                                 {

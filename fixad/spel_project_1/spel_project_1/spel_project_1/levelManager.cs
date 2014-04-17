@@ -24,8 +24,7 @@ namespace spel_project_1
         public levelManager()
         {
             levelsBeaten = new bool[9];
-            section = 9;
-            currentLevel = 5;
+            section = 1;
         }
         public void resetLevel(List<enemy> enemies, List<bullet> bullets)
         {
@@ -206,7 +205,7 @@ namespace spel_project_1
                     enemies.Add(new enemy(16 * 63, 16 * 19, 2, 3));
                     camera.X = 0;
                     camera.Y = 0;
-                    player.x = 32;
+                    player.x = 17;
                     powerUps.Add(new powerUp(473, 421 + 16, 2));
                     powerUps.Add(new powerUp(493, 421 + 16, 3));
                     powerUps.Add(new powerUp(510, 421 + 16, 1));
@@ -217,13 +216,13 @@ namespace spel_project_1
                     enemies.Add(new enemy(16 * 43, 16 * 19, 2, 3));
                     camera.X = 0;
                     camera.Y = 0;
-                    player.x = 32;
+                    player.x = 17;
                 }
                 if (section == 5)
                 {
                     camera.X = 0;
                     camera.Y = 0;
-                    player.x = 32;
+                    player.x = 17;
                     player.y = 0;
                     bosses.Add(new boss(4, 539-32, 390-6));
                     enemies.Add(new enemy(5 * 16, 390 - 6 - 64, 3, 4, 30 * 16 - 32));
@@ -244,7 +243,7 @@ namespace spel_project_1
                     enemies.Add(new enemy(956, 388, 1, 3));
                     camera.X = 0;
                     camera.Y = 0;
-                    player.setCoords(32, 32);
+                    player.setCoords(17, 32);
                     powerUps.Add(new powerUp(612 + 16, 338 + 16, 3));
                 }
                 if (section == 3)
@@ -252,20 +251,20 @@ namespace spel_project_1
                     enemies.Add(new enemy(540, 326, 3, 2, 16*10));
                     camera.X = 0;
                     camera.Y = 0;
-                    player.x = 32;
+                    player.x = 17;
                 }
                 if (section == 4)
                 {
                     enemies.Add(new enemy(473, 324, 1, 3));
                     camera.X = 0;
                     camera.Y = 0;
-                    player.x = 32;
+                    player.x = 17;
                     powerUps.Add(new powerUp(407 + 16, 372 + 16, 3));
                 }
                 if (section == 5)
                 {
                     player.y = 350;
-                    player.x = 32;
+                    player.x = 17;
                     camera.X = 0;
                     camera.Y = 0;
                     powerUps.Add(new powerUp(1076+16, 420 + 16, 1));
@@ -291,21 +290,21 @@ namespace spel_project_1
                 }
                 if (section == 2)
                 {
-                    player.x = 0;
+                    player.x = 17;
                     enemies.Add(new enemy(80, 400, 1, 4));
                     enemies.Add(new enemy(288, 368, 1, 4));
                     powerUps.Add(new powerUp(288, 448, 4));
                 }
                 if (section == 3)
                 {
-                    player.x = 0;
+                    player.x = 17;
                     enemies.Add(new enemy(544, 432, 3, 4, 60));
                     enemies.Add(new enemy(368, 288, 1, 4));
                     powerUps.Add(new powerUp(544, 448, 2));
                 }
                 if (section == 4)
                 {
-                    player.x = 0;
+                    player.x = 17;
                     enemies.Add(new enemy(352, 336, 1, 4));
                     enemies.Add(new enemy(448, 416, 2, 4));
                     enemies.Add(new enemy(96, 416, 2, 4));
@@ -313,28 +312,28 @@ namespace spel_project_1
                 }
                 if (section == 5)
                 {
-                    player.x = 0;
+                    player.x = 17;
                     enemies.Add(new enemy(432, 336, 2, 4));
                 }
                 if (section == 6)
                 {
-                    player.x = 0;
+                    player.x = 17;
                     enemies.Add(new enemy(400, 240, 3, 2, 60));
                     enemies.Add(new enemy(528, 256, 1, 4));
                 }
                 if (section == 7)
                 {
-                    player.x = 0;
+                    player.x = 17;
                     enemies.Add(new enemy(480, 304, 1, 4));
                     enemies.Add(new enemy(80, 208, 3, 1, 100));
                 }
                 if (section == 8)
                 {
-                    player.x = 0;
+                    player.x = 17;
                 }
                 if (section == 9)
                 {
-                    player.x = 0;
+                    player.x = 17;
                     bosses.Add(new boss(5, 539 - 32, 90));
                 }
             }

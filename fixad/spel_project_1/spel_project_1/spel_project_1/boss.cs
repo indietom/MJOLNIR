@@ -31,7 +31,7 @@ namespace spel_project_1
                 case 5:
                     setSize(32, 32);
                     setSpriteCoords(166, 496);
-                    
+                    hp = 10;
                     break;
                 case 6:
                     setSize(65, 65);

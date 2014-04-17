@@ -25,6 +25,7 @@ namespace spel_project_1
         public bool mech;
         public int switchDirection;
         public int maxSwitchDirection;
+        public bool hit;
 
         public enemy(float x2, float y2, int type2, int direction2)
         {
@@ -116,8 +117,27 @@ namespace spel_project_1
                     break;
             }
         }
-        public void checkHealth(List<explosion> explosions)
+        public void checkHealth(List<explosion> explosions, List<particle> particles)
         {
+            Random random = new Random();
+            if (hit)
+            {
+                if (vulnerable)
+                {
+                    for (int i = 0; i < 50; i++)
+                    {
+                        particles.Add(new particle(x + random.Next(32), y + random.Next(32), 200, 3, "grey", random.Next(-270, -80), 10));
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        particles.Add(new particle(x + random.Next(32), y + random.Next(32), 50, 3, "grey", random.Next(-270, -80), 2));
+                    }
+                }
+                hit = false;
+            }
             if (hp <= 0)
             {
                 if (type == 1)
