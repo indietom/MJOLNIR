@@ -25,10 +25,7 @@ namespace spel_project_1
         {
             levelsBeaten = new bool[9];
             section = 1;
-<<<<<<< HEAD
-=======
-            currentLevel = 5;
->>>>>>> 8e12be6914a46496e9e68d47a7f26719743eaa49
+
         }
         public void resetLevel(List<enemy> enemies, List<bullet> bullets)
         {
