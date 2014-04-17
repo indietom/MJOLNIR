@@ -347,27 +347,51 @@ namespace spel_project_1
                 if (section == 2)
                 {
                     player.x = 0;
-
+                    enemies.Add(new enemy(432, 400, 1, 4));
                 }
                 if (section == 3)
                 {
                     player.x = 0;
+                    enemies.Add(new enemy(336, 432, 2, 4));
                 }
                 if (section == 4)
                 {
                     player.x = 0;
+                    enemies.Add(new enemy(368, 208, 1, 4));
+                    enemies.Add(new enemy(464, 160, 1, 4));
                 }
                 if (section == 5)
                 {
                     player.x = 0;
+                    enemies.Add(new enemy(320, 336, 2, 4));
+                    enemies.Add(new enemy(464, 288, 1, 4));
                 }
                 if (section == 6)
                 {
                     player.x = 0;
+                    enemies.Add(new enemy(352, 368, 2, 4));
+                    enemies.Add(new enemy(240, 336, 3, 1, 80));
+                    powerUps.Add(new powerUp(432, 368, 2));
+                    powerUps.Add(new powerUp(300, 384, 3));
                 }
                 if (section == 7)
                 {
                     player.x = 0;
+                    enemies.Add(new enemy(592, 416, 3, 2, 60));
+                    enemies.Add(new enemy(0, 144, 4, 4, 200));
+                    enemies.Add(new enemy(80, 144, 4, 4, 200));
+                    enemies.Add(new enemy(160, 144, 4, 4, 200));
+                    enemies.Add(new enemy(240, 144, 4, 4, 200));
+                    enemies.Add(new enemy(320, 144, 4, 4, 200));
+                    enemies.Add(new enemy(400, 144, 4, 4, 200));
+                    enemies.Add(new enemy(0, 120, 4, 4, 150));
+                    enemies.Add(new enemy(80, 120, 4, 4, 150));
+                    enemies.Add(new enemy(160, 120, 4, 4, 150));
+                    enemies.Add(new enemy(240, 120, 4, 4, 150));
+                    enemies.Add(new enemy(320, 120, 4, 4, 150));
+                    enemies.Add(new enemy(400, 120, 4, 4, 150));
+                    enemies.Add(new enemy(480, 120, 4, 4, 150));
+
                 }
                 if (section == 8)
                 {
