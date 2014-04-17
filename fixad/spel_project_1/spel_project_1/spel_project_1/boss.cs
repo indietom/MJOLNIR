@@ -28,6 +28,10 @@ namespace spel_project_1
             hp = 20;
             switch (type)
             {
+                case 0:
+                    setSize(65, 65);
+                    setSpriteCoords(364, 430);
+                    break;
                 case 5:
                     setSize(32, 32);
                     setSpriteCoords(166, 496);
@@ -90,6 +94,23 @@ namespace spel_project_1
             Random random = new Random();
             switch (type)
             {
+                case 0:
+                    firerate += 1;
+                    if (firerate == 64 || firerate == 64 + 16 || firerate == 64 + 32)
+                    {
+                        enemyBullets.Add(new enemyBullet(x + 32, y + 32, -270, 1, 200));
+                    }
+                    if (firerate >= 64 + 32 + 16)
+                    {
+                        firerate = 0;
+                    }
+                    y += 2;
+                    if (y >= 600)
+                    {
+                        y = -100;
+                        x = random.Next(640 - 65);
+                    }
+                    break;
                 case 5:
                     if (!snipepos)
                     {
