@@ -24,9 +24,7 @@ namespace spel_project_1
         public levelManager()
         {
             levelsBeaten = new bool[9];
-            section = 9;
-            currentLevel = 7;
-
+            section = 1;
         }
         public void resetLevel(List<enemy> enemies, List<bullet> bullets)
         {
@@ -78,7 +76,41 @@ namespace spel_project_1
                 }
 
             }
-
+            if (currentLevel == 1)
+            {
+                if (section == 1)
+                {
+                    player.setCoords(100, 100);
+                    camera.X = 0;
+                }
+                if (section == 2)
+                {
+                    camera.X = 0;
+                    player.x = 17;
+                }
+                if (section == 3)
+                {
+                    camera.X = 0;
+                    player.y = 0;
+                    player.x = 17;
+                }
+                if (section == 4)
+                {
+                    camera.X = 0;
+                    player.x = 17;
+                }
+                if (section == 5)
+                {
+                    camera.X = 0;
+                    player.x = 17;
+                }
+                if (section == 6)
+                {
+                    camera.X = 0;
+                    player.y = 0;
+                    player.x = 320;
+                }
+            }
             if (currentLevel == 2)
             {
                 if (section == 1)

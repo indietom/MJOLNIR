@@ -35,10 +35,10 @@ namespace spel_project_1
             Rectangle titleCardC = new Rectangle((int)x, (int)y, 32, 32);
             if (cursor.Intersects(titleCardC) && cutSceneCount <= 0)
             {
-                gameStarted = true;
                 imgy = frame(7);
                 if (mouse.LeftButton == ButtonState.Pressed && !lm.levelsBeaten[bossNumber] && bossNumber != 8)
                 {
+                    gameStarted = true;
                     lm.currentLevel = bossNumber;
                     cutSceneCount = 1;
                 }

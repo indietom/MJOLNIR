@@ -33,6 +33,7 @@ namespace spel_project_1
                     setSize(32, 32);
                     maxSwitchDirection = 640-32;
                     direction = 3;
+                    hp = 10;
                     break;
                 case 0:
                     setSize(65, 65);
@@ -340,13 +341,21 @@ namespace spel_project_1
         }
         public void checkHealth(levelManager lm, ref string gameState, List<explosion> explosions)
         {
+            Console.WriteLine(hp);
             if (hp <= 0)
             {
                 if (gotoMenuCount <= 0)
                 {
-                    for (int i = 0; i < 5; i++)
+                    if (type != 7 && type != 5)
                     {
-                        explosions.Add(new explosion(x + 16 * i, y, 32));
+                        for (int i = 0; i < 5; i++)
+                        {
+                            explosions.Add(new explosion(x + 16 * i, y, 32));
+                        }
+                    }
+                    else
+                    {
+                        explosions.Add(new explosion(x, y, 32));
                     }
                 }
                 gotoMenuCount += 1;

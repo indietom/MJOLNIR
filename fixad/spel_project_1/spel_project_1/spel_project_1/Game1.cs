@@ -58,6 +58,7 @@ namespace spel_project_1
         }
         Texture2D spritesheet;
         Texture2D tilesheet;
+        Texture2D tileSet1;
         Texture2D tileSet5;
         Texture2D tileSet6;
         Texture2D tileSet7;
@@ -94,6 +95,7 @@ namespace spel_project_1
             tileSet7 = Content.Load<Texture2D>("tileSet7");
             tileSet2 = Content.Load<Texture2D>("tileSet2");
             tileSet0 = Content.Load<Texture2D>("tileSet0");
+            tileSet1 = Content.Load<Texture2D>("tileSet1");
             tileSet8 = Content.Load<Texture2D>("tileSet8");
             startScreen = Content.Load<Texture2D>("startScreen");
             // TODO: use this.Content to load your game content here
@@ -668,14 +670,15 @@ namespace spel_project_1
                         levelManager.currentLevel = 8;
                         gameState = "game";
                     }
-                    
-                    spriteBatch.DrawString(gameFont, "Use the mouse to pick level", new Vector2(0, 0), Color.Tomato);
+                    if (!gameStarted)
+                        spriteBatch.DrawString(gameFont, "Use the mouse to pick level, starting with level 1 is recommended", new Vector2(0, 0), Color.Tomato);
                     break;
                 case "game":
                     
-                    if (levelManager.currentLevel != 4) 
+                    if (levelManager.currentLevel == 1) 
                     {
-                        level.drawLevel(spriteBatch, spritesheet, levelManager.currentSection, camera, levelManager.currentSection.GetLength(1), levelManager.currentSection.GetLength(0));
+                        spriteBatch.Draw(backgroundLevel4, new Vector2(0, 0), Color.White);
+                        level.drawLevel(spriteBatch, tileSet1, levelManager.currentSection, camera, levelManager.currentSection.GetLength(1), levelManager.currentSection.GetLength(0));
                     }
                     if (levelManager.currentLevel == 7)
                     {

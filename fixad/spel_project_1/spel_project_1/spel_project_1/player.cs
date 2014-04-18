@@ -68,7 +68,7 @@ namespace spel_project_1
 
             healthbar.height = hp * 10;
 
-            if (lm.currentLevel == 4 || lm.currentLevel == 3 || lm.currentLevel == 6 || lm.currentLevel == 5 || lm.currentLevel == 0)
+            if (lm.currentLevel == 4 || lm.currentLevel == 3 || lm.currentLevel == 6 || lm.currentLevel == 5 || lm.currentLevel == 0 || lm.currentLevel == 1)
             {
                 if (y >= 500)
                 {
