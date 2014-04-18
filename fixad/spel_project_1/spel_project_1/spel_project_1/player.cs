@@ -240,11 +240,11 @@ namespace spel_project_1
                         }
                         if (direction == 3)
                         {
-                            bullets.Add(new bullet(x + 16, y + 10, -180, 100, 2));
+                            bullets.Add(new bullet(x + 16, y + 10, -180, 300, 2));
                         }
                         else
                         {
-                            bullets.Add(new bullet(x + 16, y + 10, 0, 100, 2));
+                            bullets.Add(new bullet(x + 16, y + 10, 0, 300, 2));
                         }
                         fireRate = 1;
                         shootingFalse3 = true;

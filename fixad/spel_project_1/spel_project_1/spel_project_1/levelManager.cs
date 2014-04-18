@@ -85,14 +85,16 @@ namespace spel_project_1
                 }
                 if (section == 2)
                 {
+                    enemies.Add(new enemy(524, 421, 1, 3));
                     camera.X = 0;
                     player.x = 17;
                 }
                 if (section == 3)
                 {
+                    enemies.Add(new enemy(245, 357, 1, 3));
+                    //enemies.Add(new enemy(614, 370, 1, 3));
                     camera.X = 0;
-                    player.y = 0;
-                    player.x = 17;
+                    player.x = 32;
                 }
                 if (section == 4)
                 {
@@ -101,6 +103,7 @@ namespace spel_project_1
                 }
                 if (section == 5)
                 {
+                    enemies.Add(new enemy(635, 261, 1 , 3));
                     camera.X = 0;
                     player.x = 17;
                 }
