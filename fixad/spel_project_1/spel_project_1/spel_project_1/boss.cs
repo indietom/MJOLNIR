@@ -28,6 +28,12 @@ namespace spel_project_1
             hp = 20;
             switch (type)
             {
+                case 1:
+                    setSpriteCoords(430, 430);
+                    setSize(65, 65);
+                    direction = 3;
+                    maxSwitchDirection = 30 * 16 - 32;
+                    break;
                 case 7:
                     setSpriteCoords(232, 496);
                     setSize(32, 32);
@@ -101,6 +107,34 @@ namespace spel_project_1
             Random random = new Random();
             switch (type)
             {
+                case 1:
+                    if (direction == 3 && x < 16*5)
+                        {
+                            direction = 4;
+                            x += 5;
+                            direction = 4;
+                            Console.WriteLine(direction);
+                        }
+                        if (direction == 4 && x >= 640-32-16*5)
+                        {
+                            direction = 3;
+                            x -= 5;
+                            direction = 3;
+                            Console.WriteLine(direction);
+                        }
+                        if (direction == 3)
+                        {
+                            imgx = 496;
+                            if (hp >= 1)
+                                x--;
+                        }
+                        else
+                        {
+                            imgx = 430;
+                            if (hp >= 1)
+                                x++;
+                        }
+                    break;
                 case 0:
                     firerate += 1;
                     if (firerate == 64 || firerate == 64 + 16 || firerate == 64 + 32)

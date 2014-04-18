@@ -257,7 +257,7 @@ namespace spel_project_1
                     Rectangle playerBodyR = new Rectangle((int)player.x + 3, (int)player.y - 3, 32, 32);
                     Rectangle playerHead = new Rectangle((int)player.x, (int)player.y - 6, 32, 32);
                     Rectangle playerLadderHead = new Rectangle((int)player.x, (int)player.y - 24, 32, 32);
-                    Rectangle playerRC = new Rectangle((int)player.renderX + 10, (int)player.renderY, 10, 32);
+                    Rectangle playerRC = new Rectangle((int)player.renderX + 10, (int)player.renderY+3, 10, 24);
                     Rectangle hammerParticleC;
                     if (player.direction == 3)
                     {
@@ -286,7 +286,7 @@ namespace spel_project_1
                         b.animation();
                         b.applyOffset(camera);
                         b.checkHealth(levelManager, ref gameState, explosions);
-                        bossRC = new Rectangle((int)b.x, (int)b.y, b.width, b.height);
+                        bossRC = new Rectangle((int)b.x, (int)b.y+5, b.width, b.height-5);
                         if (playerRC.Intersects(bossRC))
                         {
                             player.hp = 0;

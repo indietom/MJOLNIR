@@ -112,6 +112,7 @@ namespace spel_project_1
                     camera.X = 0;
                     player.y = 0;
                     player.x = 320;
+                    bosses.Add(new boss(1, 539 - 32, 390 - 6 - 50));
                 }
             }
             if (currentLevel == 2)
