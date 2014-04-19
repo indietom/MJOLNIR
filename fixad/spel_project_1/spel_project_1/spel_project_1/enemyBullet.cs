@@ -31,6 +31,11 @@ namespace spel_project_1
                     setSize(3, 3);
                     setSpriteCoords(232, 28);
                     break;
+                case 2:
+                    speed = 5;
+                    setSize(32, 32);
+                    setSpriteCoords(496, 397);
+                    break;
             }
         }
         public void update(Rectangle camera, SoundEffect shoot2Sfx)
@@ -51,6 +56,11 @@ namespace spel_project_1
             switch (type)
             {
                 case 1:
+                    x += veclocity_x;
+                    y += veclocity_y;
+                    math();
+                    break;
+                case 2:
                     x += veclocity_x;
                     y += veclocity_y;
                     math();

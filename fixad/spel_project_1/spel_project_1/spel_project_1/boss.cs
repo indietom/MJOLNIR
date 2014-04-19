@@ -120,12 +120,30 @@ namespace spel_project_1
                 case 8:
                     if (hp >= 1)
                     {
+                        firerate += 1;
+                        if (firerate >= 64)
+                        {
+                            if (jumping)
+                            {
+                                enemyBullets.Add(new enemyBullet(x + 32, y + 32, -270, 2, 200));
+                            }
+                            else
+                            {
+                                if(direction == 3)
+                                    enemyBullets.Add(new enemyBullet(x + 32, y + 32, -180, 2, 200));
+                                else
+                                    enemyBullets.Add(new enemyBullet(x + 32, y + 32, -0, 2, 200));
+                            }
+                            firerate = 0;
+                        }
                         if (direction == 3)
                         {
+                            imgx = 364;
                             x--;
                         }
                         else
                         {
+                            imgx = 364 + 66; 
                             x++;
                         }
                         if (direction == 3 && x < 16 * 5)
@@ -156,13 +174,13 @@ namespace spel_project_1
                             if (jumpInterval >= 50)
                             {
                                 if (y >= 300)
-                                    jumpForce = 5;
+                                    jumpForce = 8;
                                 else
                                     jumpInterval = 0;
                             }
                             if (y <= 480 - 16 * 6)
                                 y += 3;
-                            if (jumpingCount >= 1000)
+                            if (jumpingCount >= 2000 && jumpInterval <= 0 && jumpForce <= 0)
                             {
                                 jumping = false;
                                 jumpingCount = 0;
