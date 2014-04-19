@@ -24,6 +24,8 @@ namespace spel_project_1
         public levelManager()
         {
             levelsBeaten = new bool[9];
+            for (int i = 0; i < 8; i++)
+                levelsBeaten[i] = true;
             section = 1;
         }
         public void resetLevel(List<enemy> enemies, List<bullet> bullets)
@@ -40,6 +42,11 @@ namespace spel_project_1
             enemyBullets.Clear();
             powerUps.Clear();
             bosses.Clear();
+            if (currentLevel == 8)
+            {
+                if(section == 1)
+                    bosses.Add(new boss(8, 539 - 32, 390 - 6 - 50));
+            }
             if (currentLevel == 0)
             {
                 if (section == 1)

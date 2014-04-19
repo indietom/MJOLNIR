@@ -20,14 +20,24 @@ namespace spel_project_1
         public int reSurfaceCounter;
         public bool snipepos;
         public int snipeposCount;
+        public bool jumping;
+        public int jumpingCount;
+        public float jumpForce;
+        public int jumpInterval;
 
         public boss(int type2, float x2, float y2)
         {
             type = type2;
             setCoords(x2, y2);
-            hp = 20;
+            hp = 25;
             switch (type)
             {
+                case 8:
+                    direction = 3;
+                    setSpriteCoords(364, 364);
+                    setSize(65, 65);
+                    hp = 30;
+                    break;
                 case 1:
                     setSpriteCoords(430, 430);
                     setSize(65, 65);
@@ -107,6 +117,64 @@ namespace spel_project_1
             Random random = new Random();
             switch (type)
             {
+                case 8:
+                    if (hp >= 1)
+                    {
+                        if (direction == 3)
+                        {
+                            x--;
+                        }
+                        else
+                        {
+                            x++;
+                        }
+                        if (direction == 3 && x < 16 * 5)
+                        {
+                            direction = 4;
+                            x += 5;
+                            direction = 4;
+                        }
+                        if (direction == 4 && x >= 640 - 32 - 16 * 5)
+                        {
+                            direction = 3;
+                            x -= 5;
+                            direction = 3;
+                        }
+                        jumpingCount += 1;
+                        if (jumpingCount == 600)
+                        {
+                            jumping = true;
+                        }
+                        if (jumping)
+                        {
+                            Console.WriteLine(jumpForce);
+                            y -= jumpForce;
+                            if (jumpForce > 0)
+                                jumpForce -= 0.1f;
+                            jumpInterval += 1;
+
+                            if (jumpInterval >= 50)
+                            {
+                                if (y >= 300)
+                                    jumpForce = 5;
+                                else
+                                    jumpInterval = 0;
+                            }
+                            if (y <= 480 - 16 * 6)
+                                y += 3;
+                            if (jumpingCount >= 1000)
+                            {
+                                jumping = false;
+                                jumpingCount = 0;
+                            }
+                        }
+                        if (!jumping)
+                        {
+                            if (y <= 480 - 16 * 6)
+                                y += 1;
+                        }
+                    }
+                    break;
                 case 1:
                     if (direction == 3 && x < 16*5)
                         {

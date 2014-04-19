@@ -668,6 +668,7 @@ namespace spel_project_1
                     if (levelManager.levelsBeaten[0] && levelManager.levelsBeaten[1] && levelManager.levelsBeaten[2] && levelManager.levelsBeaten[3] && levelManager.levelsBeaten[3] && levelManager.levelsBeaten[4] && levelManager.levelsBeaten[5] && levelManager.levelsBeaten[6] && levelManager.levelsBeaten[7])
                     {
                         levelManager.currentLevel = 8;
+                        levelManager.roomTransition(ref player.inputActive, enemies, bullets, player, particles, powerUps, ref camera, enemyBullets, bosses);
                         gameState = "game";
                     }
                     if (!gameStarted)
