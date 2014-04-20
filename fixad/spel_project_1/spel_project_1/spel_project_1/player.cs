@@ -149,52 +149,52 @@ namespace spel_project_1
             Random random = new Random();
             KeyboardState keyboard = Keyboard.GetState();
             GamePadState gamepad = GamePad.GetState(PlayerIndex.One);
-            if (keyboard.IsKeyDown(Keys.R))
-            {
-                camera.X = (int)x;
-                camera.Y = 0;
-                setCoords(210, 100);
-                rocketAmmo += 1000;
-                rifleAmmo += 1000;
-                shotgunAmmo += 1000;
-                hp = 10;
-                respawnCounter = 0;
-            }
-            if (keyboard.IsKeyDown(Keys.F1))
-            {
-                Console.WriteLine(x);
-                Console.WriteLine(y);
-            }
+            //if (keyboard.IsKeyDown(Keys.R))
+            //{
+            //    camera.X = (int)x;
+            //    camera.Y = 0;
+            //    setCoords(210, 100);
+            //    rocketAmmo += 1000;
+            //    rifleAmmo += 1000;
+            //    shotgunAmmo += 1000;
+            //    hp = 10;
+            //    respawnCounter = 0;
+            //}
+            //if (keyboard.IsKeyDown(Keys.F1))
+            //{
+            //    Console.WriteLine(x);
+            //    Console.WriteLine(y);
+            //}
             if (dead)
             {
                 bleeding = true;
                 jumping = false;
                 inputActive = false;
             }
-            if (hammerDelay >= 1)
-            {
-                inputActive = false;
-                hammerDelay += 1;
-                if (hammerDelay == 32 && spawnHammerEffectCheck)
-                {
-                    for (int i = 0; i < 10; i++)
-                    {
-                        if (direction == 3)
-                        {
-                            particles.Add(new particle(x - 16 * 2, y + 32, 50, 1, "light blue", random.Next(-150, -40), random.Next(5, 7), true));
-                        }
-                        else
-                        {
-                            particles.Add(new particle(x + 16 * 4, y + 32, 50, 1, "light blue", random.Next(-150, -40), random.Next(5, 7), true));
-                        }
-                    }
-                }
-                if (hammerDelay >= 64)
-                {
-                    hammerDelay = 0;
-                    inputActive = true;
-                }
-            }
+            //if (hammerDelay >= 1)
+            //{
+            //    inputActive = false;
+            //    hammerDelay += 1;
+            //    if (hammerDelay == 32 && spawnHammerEffectCheck)
+            //    {
+            //        for (int i = 0; i < 10; i++)
+            //        {
+            //            if (direction == 3)
+            //            {
+            //                particles.Add(new particle(x - 16 * 2, y + 32, 50, 1, "light blue", random.Next(-150, -40), random.Next(5, 7), true));
+            //            }
+            //            else
+            //            {
+            //                particles.Add(new particle(x + 16 * 4, y + 32, 50, 1, "light blue", random.Next(-150, -40), random.Next(5, 7), true));
+            //            }
+            //        }
+            //    }
+            //    if (hammerDelay >= 64)
+            //    {
+            //        hammerDelay = 0;
+            //        inputActive = true;
+            //    }
+            //}
             if (inputActive)
             {
                 if (keyboard.IsKeyDown(Keys.C) || keyboard.IsKeyDown(Keys.LeftShift))

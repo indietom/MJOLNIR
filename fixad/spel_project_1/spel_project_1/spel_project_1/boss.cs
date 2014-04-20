@@ -29,7 +29,7 @@ namespace spel_project_1
         {
             type = type2;
             setCoords(x2, y2);
-            hp = 25;
+            hp = 15;
             switch (type)
             {
                 case 8:
