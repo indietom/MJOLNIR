@@ -246,7 +246,6 @@ namespace spel_project_1
             {
                 if (section == 1)
                 {
-                    Console.WriteLine("lel");
                     enemies.Add(new enemy(780, 324, 1, 3));
                     camera.X = 0;
                     camera.Y = 0;
@@ -348,7 +347,6 @@ namespace spel_project_1
                     player.hp = 10;
                     player.respawnCounter = 0;
                     player.dead = false;
-                    Console.WriteLine(player.x+"\n"+player.y);
                 }
                 if (section == 2)
                 {

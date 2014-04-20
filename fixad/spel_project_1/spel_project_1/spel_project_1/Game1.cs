@@ -77,11 +77,15 @@ namespace spel_project_1
         SoundEffect explosionSfx;
         SoundEffect shootSfx;
         SoundEffect shoot2Sfx;
+        SoundEffect powerUpSfx;
+        SoundEffect deathSfx;
         protected override void LoadContent()
         {
             explosionSfx = Content.Load<SoundEffect>("explosion_sfx");
-            shootSfx = Content.Load<SoundEffect>("shoot_sfx");
+            powerUpSfx = Content.Load<SoundEffect>("powerup_sfx");
+            deathSfx = Content.Load<SoundEffect>("splash_sfx");
             shoot2Sfx = Content.Load<SoundEffect>("shoot2_sfx");
+            shootSfx = Content.Load<SoundEffect>("shoot_sfx");
             gameFont = Content.Load<SpriteFont>("SpriteFont1");
             bigFont = Content.Load<SpriteFont>("bigFont");
             // Create a new SpriteBatch, which can be used to draw textures.
@@ -287,7 +291,7 @@ namespace spel_project_1
                         b.attacking(enemyBullets, enemies);
                         b.animation();
                         b.applyOffset(camera);
-                        b.checkHealth(levelManager, ref gameState, explosions, ref player);
+                        b.checkHealth(levelManager, ref gameState, explosions, ref player, particles);
                         bossRC = new Rectangle((int)b.x, (int)b.y+5, b.width, b.height-5);
                         if (playerRC.Intersects(bossRC))
                         {
@@ -300,12 +304,15 @@ namespace spel_project_1
                             {
                                 if (bu.type == 2)
                                 {
+                                    b.hit = true;
                                     b.hp -= 2;
                                 }
                                 else
                                 {
+                                    b.hit = true;
                                     b.hp -= 1;
                                 }
+                                b.hit = true;
                                 bu.destroy = true;
                             }
                         }
@@ -317,6 +324,7 @@ namespace spel_project_1
                         powerUpRC = new Rectangle((int)pu.renderX, (int)pu.renderY, 16, 16);
                         if (playerRC.Intersects(powerUpRC))
                         {
+                            powerUpSfx.Play();
                             if (pu.type == 1 && player.hp < 10)
                             {
                                 player.healed = true;
@@ -460,7 +468,7 @@ namespace spel_project_1
                     player.movemnt();
                     player.input(bullets, particles, ref camera);
                     player.applyOffset(camera);
-                    player.checkHealth(healthbar, particles, levelManager, enemies, bullets, powerUps, ref camera, enemyBullets, bosses);
+                    player.checkHealth(healthbar, particles, levelManager, enemies, bullets, powerUps, ref camera, enemyBullets, bosses, deathSfx);
                     player.animation();
 
                     if (collisionTile(hammerParticleC, levelManager.currentSectionC, 1))

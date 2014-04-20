@@ -57,7 +57,7 @@ namespace spel_project_1
             acquiredGuns = 4;
             animationActive = true;
         }
-        public void checkHealth(healthbar healthbar, List<particle> particles, levelManager lm, List<enemy> enemies, List<bullet> bullets, List<powerUp> powerUps, ref Rectangle camera, List<enemyBullet> enemyBullets, List<boss> bosses)
+        public void checkHealth(healthbar healthbar, List<particle> particles, levelManager lm, List<enemy> enemies, List<bullet> bullets, List<powerUp> powerUps, ref Rectangle camera, List<enemyBullet> enemyBullets, List<boss> bosses, SoundEffect deadSfx)
         {
             Random random = new Random();
 
@@ -86,6 +86,10 @@ namespace spel_project_1
                 rocketAmmo = 0;
                 gunType = 1;
                 respawnCounter += 1;
+                if (respawnCounter == 1)
+                {
+                    deadSfx.Play();
+                }
                 if (respawnCounter >= 128)
                 {
                     lm.section = 1;

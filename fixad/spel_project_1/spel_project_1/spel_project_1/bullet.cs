@@ -57,7 +57,6 @@ namespace spel_project_1
             }
             if (lifeTime >= maxLifeTime)
             {
-                Console.WriteLine("lel");
                 destroy = true;
             }
             if (type == 2)

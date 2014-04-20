@@ -24,6 +24,7 @@ namespace spel_project_1
         public int jumpingCount;
         public float jumpForce;
         public int jumpInterval;
+        public bool hit;
 
         public boss(int type2, float x2, float y2)
         {
@@ -165,7 +166,6 @@ namespace spel_project_1
                         }
                         if (jumping)
                         {
-                            Console.WriteLine(jumpForce);
                             y -= jumpForce;
                             if (jumpForce > 0)
                                 jumpForce -= 0.1f;
@@ -199,14 +199,12 @@ namespace spel_project_1
                             direction = 4;
                             x += 5;
                             direction = 4;
-                            Console.WriteLine(direction);
                         }
                         if (direction == 4 && x >= 640-32-16*5)
                         {
                             direction = 3;
                             x -= 5;
                             direction = 3;
-                            Console.WriteLine(direction);
                         }
                         if (direction == 3)
                         {
@@ -315,14 +313,12 @@ namespace spel_project_1
                             direction = 4;
                             x += 5;
                             direction = 4;
-                            Console.WriteLine(direction);
                         }
                         if (direction == 4 && x >= 640-32)
                         {
                             direction = 3;
                             x -= 5;
                             direction = 3;
-                            Console.WriteLine(direction);
                         }
                         if (direction == 3)
                             x--;
@@ -372,7 +368,6 @@ namespace spel_project_1
                     }
                     if (reSurface && hp >= 1)
                     {
-                        Console.WriteLine("lel");
                         y -= 4;
                         if (y <= 420 - 16 * 4)
                         {
@@ -459,9 +454,17 @@ namespace spel_project_1
                     break;
             }
         }
-        public void checkHealth(levelManager lm, ref string gameState, List<explosion> explosions, ref player player)
+        public void checkHealth(levelManager lm, ref string gameState, List<explosion> explosions, ref player player, List<particle> particles)
         {
-            Console.WriteLine(hp);
+            Random random = new Random();
+            if (hit)
+            {
+                for (int i = 0; i < 50; i++)
+                {
+                    particles.Add(new particle(x + random.Next(32), y + random.Next(32), 200, 3, "grey", random.Next(-270, -80), 10));
+                }
+                hit = false;
+            }
             if (hp <= 0)
             {
                 if (gotoMenuCount <= 0)
@@ -496,7 +499,6 @@ namespace spel_project_1
                 case 6:
                     if (!dive && y <= 100)
                     {
-                        Console.WriteLine(switchDirection);
                         switchDirection += 1;
                         if (direction == 3 && switchDirection >= maxSwitchDirection)
                         {
