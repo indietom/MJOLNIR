@@ -125,14 +125,14 @@ namespace spel_project_1
                         {
                             if (jumping)
                             {
-                                enemyBullets.Add(new enemyBullet(x + 32, y + 32, -270, 2, 200));
+                                enemyBullets.Add(new enemyBullet(x + 32, y + 16, -270, 2, 200));
                             }
                             else
                             {
                                 if(direction == 3)
-                                    enemyBullets.Add(new enemyBullet(x + 32, y + 32, -180, 2, 200));
+                                    enemyBullets.Add(new enemyBullet(x + 32, y + 16, -180, 2, 200));
                                 else
-                                    enemyBullets.Add(new enemyBullet(x + 32, y + 32, -0, 2, 200));
+                                    enemyBullets.Add(new enemyBullet(x + 32, y + 16, -0, 2, 200));
                             }
                             firerate = 0;
                         }
@@ -459,7 +459,7 @@ namespace spel_project_1
                     break;
             }
         }
-        public void checkHealth(levelManager lm, ref string gameState, List<explosion> explosions)
+        public void checkHealth(levelManager lm, ref string gameState, List<explosion> explosions, ref player player)
         {
             Console.WriteLine(hp);
             if (hp <= 0)
@@ -481,6 +481,7 @@ namespace spel_project_1
                 gotoMenuCount += 1;
                 if (gotoMenuCount >= 128)
                 {
+                    player.setCoords(320, 240);
                     lm.section = 1;
                     lm.levelsBeaten[type] = true;
                     gameState = "menu";

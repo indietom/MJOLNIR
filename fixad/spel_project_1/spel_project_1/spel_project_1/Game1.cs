@@ -25,6 +25,7 @@ namespace spel_project_1
             graphics.PreferredBackBufferWidth = 640;
         }
 
+        int endY;
         saveState saveState = new saveState();
         bool gameStarted;
         bool drawCutScene;
@@ -54,6 +55,7 @@ namespace spel_project_1
             gameStarted = false;
             camera = new Rectangle(0, 0, 320, 240);
             menu = new menu(titleCards);
+            endY = 480;
             base.Initialize();
         }
         Texture2D spritesheet;
@@ -285,7 +287,7 @@ namespace spel_project_1
                         b.attacking(enemyBullets, enemies);
                         b.animation();
                         b.applyOffset(camera);
-                        b.checkHealth(levelManager, ref gameState, explosions);
+                        b.checkHealth(levelManager, ref gameState, explosions, ref player);
                         bossRC = new Rectangle((int)b.x, (int)b.y+5, b.width, b.height-5);
                         if (playerRC.Intersects(bossRC))
                         {
@@ -655,6 +657,19 @@ namespace spel_project_1
             spriteBatch.Begin();
             switch (gameState)
             {
+                case "end":
+                    endY -= 1;
+                    if (endY <= -300)
+                    {
+                        for (int i = 0; i < 9; i++)
+                        {
+                            levelManager.levelsBeaten[i] = false;
+                            player = new player();
+                        }
+                        gameState = "start screen";
+                    }
+                    spriteBatch.DrawString(gameFont, "You have defeted the evil god! \n\n\n\n\n\n Programming by Tom and Elmer \n\n Graphics by Tom and Zamuel \n\n level design by Tom and Elmer \n\n\n\n thanks for playing", new Vector2(0, endY), Color.Gold);
+                    break;
                 case "start screen":
                     spriteBatch.Draw(startScreen, new Vector2(0, 0), Color.White);
                     break;
@@ -670,6 +685,11 @@ namespace spel_project_1
                         levelManager.currentLevel = 8;
                         levelManager.roomTransition(ref player.inputActive, enemies, bullets, player, particles, powerUps, ref camera, enemyBullets, bosses);
                         gameState = "game";
+                    }
+                    if (levelManager.levelsBeaten[0] && levelManager.levelsBeaten[1] && levelManager.levelsBeaten[2] && levelManager.levelsBeaten[3] && levelManager.levelsBeaten[3] && levelManager.levelsBeaten[4] && levelManager.levelsBeaten[5] && levelManager.levelsBeaten[6] && levelManager.levelsBeaten[7] && levelManager.levelsBeaten[8])
+                    {
+                        levelManager.roomTransition(ref player.inputActive, enemies, bullets, player, particles, powerUps, ref camera, enemyBullets, bosses);
+                        gameState = "end";
                     }
                     if (!gameStarted)
                         spriteBatch.DrawString(gameFont, "Use the mouse to pick level, starting with level 1 is recommended", new Vector2(0, 0), Color.Tomato);
