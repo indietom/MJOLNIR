@@ -396,16 +396,54 @@ namespace spel_project_1
 
         public void animation()
         {
+            KeyboardState keyboard = Keyboard.GetState();
             if (jumping || !onGround && !onWall || dead || onLadder)
             {
                 animationActive = false;
                 if (dead && !animationActive)
                 {
-                    setSpriteCoords(1, 67);
+                    if (respawnCounter <= 64)
+                    {
+                        if (direction == 3)
+                        {
+                            setSpriteCoords(frame(1), 67);
+                        }
+                        else
+                        {
+                            setSpriteCoords(frame(2), 67);
+                        }
+                    }
+                    else
+                    {
+                        if (direction == 3)
+                        {
+                            setSpriteCoords(1, 67);
+                        }
+                        else
+                        {
+                            setSpriteCoords(frame(3), 67);
+                        }
+                    }
                 }
                 if (onLadder && !animationActive)
                 {
-                    setSpriteCoords(frame(5), 1);
+                    imgx = frame(5);
+                    if (keyboard.IsKeyDown(Keys.Up) || keyboard.IsKeyDown(Keys.Down))
+                    {
+                        animationCount += 1;
+                    }
+                    if (animationCount >= 10)
+                    {
+                        imgy = frame(1);
+                    }
+                    if (animationCount >= 20)
+                    {
+                        animationCount = 0;
+                    }
+                    if (animationCount <= 0)
+                    {
+                        imgy = 1;
+                    }
                 }
 
                 if (!onGround && !onWall && !onLadder && !animationActive)
