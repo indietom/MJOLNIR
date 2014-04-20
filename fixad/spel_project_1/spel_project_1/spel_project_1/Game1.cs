@@ -73,6 +73,8 @@ namespace spel_project_1
         Texture2D backgroundLevel5;
         Texture2D backgroundLevel4;
         Texture2D backgroundLevel6;
+        Texture2D backgroundLevel7;
+        Texture2D backgroundLevelLava;
         SpriteFont bigFont;
         SoundEffect explosionSfx;
         SoundEffect shootSfx;
@@ -95,6 +97,8 @@ namespace spel_project_1
             backgroundLevel6 = Content.Load<Texture2D>("background6");
             backgroundLevel4 = Content.Load<Texture2D>("bac_sky");
             backgroundLevel3 = Content.Load<Texture2D>("bac_caveWall");
+            backgroundLevel7 = Content.Load<Texture2D>("snowBackground");
+            backgroundLevelLava = Content.Load<Texture2D>("lavaBackgound");
             tileSet5 = Content.Load<Texture2D>("tileSet5");
             tileSet3 = Content.Load<Texture2D>("tileSet3");
             tileSet6 = Content.Load<Texture2D>("tileSet6");
@@ -676,7 +680,7 @@ namespace spel_project_1
                         }
                         gameState = "start screen";
                     }
-                    spriteBatch.DrawString(gameFont, "You have defeted the evil god! \n\n\n\n\n\n Programming by Tom and Elmer \n\n Graphics by Tom and Zamuel \n\n level design by Tom and Elmer \n\n\n\n thanks for playing", new Vector2(0, endY), Color.Gold);
+                    spriteBatch.DrawString(gameFont, "You have defeted the evil god! \n\n\n\n\n\n Programming by Tom and Elmer \n\n Graphics by Zamuel \n\n level design by Tom and Elmer \n\n\n\n thanks for playing", new Vector2(0, endY), Color.Gold);
                     break;
                 case "start screen":
                     spriteBatch.Draw(startScreen, new Vector2(0, 0), Color.White);
@@ -711,7 +715,7 @@ namespace spel_project_1
                     }
                     if (levelManager.currentLevel == 7)
                     {
-                        spriteBatch.Draw(backgroundLevel4, new Vector2(0, 0), Color.White);
+                        spriteBatch.Draw(backgroundLevel7, new Vector2(0, 0), Color.White);
                         level.drawLevel(spriteBatch, tileSet8, levelManager.currentSection, camera, levelManager.currentSection.GetLength(1), levelManager.currentSection.GetLength(0));
                     }
                     if (levelManager.currentLevel == 0)
@@ -742,7 +746,7 @@ namespace spel_project_1
                     }
                     if (levelManager.currentLevel == 6 || levelManager.currentLevel == 8)
                     {
-                        spriteBatch.Draw(backgroundLevel5, new Vector2(0, 0), Color.White);
+                        spriteBatch.Draw(backgroundLevelLava, new Vector2(0, 0), Color.White);
                         level.drawLevel(spriteBatch, tileSet7, levelManager.currentSection, camera, levelManager.currentSection.GetLength(1), levelManager.currentSection.GetLength(0));
                     }
                     player.drawSpriteOffset(spriteBatch, spritesheet);

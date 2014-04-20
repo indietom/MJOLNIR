@@ -182,13 +182,29 @@ namespace spel_project_1
                         {
                             if (direction == 3)
                             {
-                                enemyBullets.Add(new enemyBullet(x + 16, y + 16, -180, 1, 200));
-                                particles.Add(new particle(x + 16, y + 10, 200, 3, "yellow", -70, 7));
+                                if (type == 1)
+                                {
+                                    enemyBullets.Add(new enemyBullet(x + 16, y + 10, -180, 1, 200));
+                                    particles.Add(new particle(x + 16, y + 10, 200, 3, "yellow", -70, 7));
+                                }
+                                else
+                                {
+                                    enemyBullets.Add(new enemyBullet(x + 16, y + 16, -180, 1, 200));
+                                    particles.Add(new particle(x + 16, y + 10, 200, 3, "yellow", -70, 7));
+                                }
                             }
                             else
                             {
-                                enemyBullets.Add(new enemyBullet(x + 16, y + 16, 0, 1, 200));
-                                particles.Add(new particle(x + 16, y + 10, 200, 3, "yellow", -110, 7));
+                                if (type == 1)
+                                {
+                                    enemyBullets.Add(new enemyBullet(x + 16, y + 10, 0, 1, 200));
+                                    particles.Add(new particle(x + 16, y + 10, 200, 3, "yellow", -110, 7));
+                                }
+                                else
+                                {
+                                    enemyBullets.Add(new enemyBullet(x + 16, y + 16, -180, 1, 200));
+                                    particles.Add(new particle(x + 16, y + 10, 200, 3, "yellow", -70, 7));
+                                }
                             }
                         }
                     }
