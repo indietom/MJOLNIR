@@ -75,6 +75,7 @@ namespace spel_project_1
         Texture2D backgroundLevel6;
         Texture2D backgroundLevel7;
         Texture2D backgroundLevelLava;
+        Texture2D backgroundLevelDesert;
         SpriteFont bigFont;
         SoundEffect explosionSfx;
         SoundEffect shootSfx;
@@ -99,6 +100,7 @@ namespace spel_project_1
             backgroundLevel3 = Content.Load<Texture2D>("bac_caveWall");
             backgroundLevel7 = Content.Load<Texture2D>("snowBackground");
             backgroundLevelLava = Content.Load<Texture2D>("lavaBackgound");
+            backgroundLevelDesert = Content.Load<Texture2D>("DesertBackground");
             tileSet5 = Content.Load<Texture2D>("tileSet5");
             tileSet3 = Content.Load<Texture2D>("tileSet3");
             tileSet6 = Content.Load<Texture2D>("tileSet6");
@@ -720,7 +722,7 @@ namespace spel_project_1
                     }
                     if (levelManager.currentLevel == 0)
                     {
-                        spriteBatch.Draw(backgroundLevel4, new Vector2(0, 0), Color.White);
+                        spriteBatch.Draw(backgroundLevelDesert, new Vector2(0, 0), Color.White);
                         level.drawLevel(spriteBatch, tileSet0, levelManager.currentSection, camera, levelManager.currentSection.GetLength(1), levelManager.currentSection.GetLength(0));
                     }
                     if (levelManager.currentLevel == 2)
