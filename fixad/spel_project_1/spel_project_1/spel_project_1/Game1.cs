@@ -762,7 +762,7 @@ namespace spel_project_1
                     healthbar.drawSprite(spriteBatch, spritesheet);
                     if (player.gunType == 1)
                     {
-                        spriteBatch.DrawString(gameFont, "Pistol: Infinate", new Vector2(500, 30), Color.Coral);
+                        spriteBatch.DrawString(gameFont, "Pistol: infinite", new Vector2(500, 30), Color.Coral);
                         spriteBatch.Draw(spritesheet, new Vector2(20 + 5, 10+16), new Rectangle(34, 529, 5, 6), Color.White);
                     }
                     if (player.gunType == 2)
