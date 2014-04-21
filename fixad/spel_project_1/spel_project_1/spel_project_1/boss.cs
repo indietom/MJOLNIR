@@ -439,11 +439,11 @@ namespace spel_project_1
                         {
                             if (direction == 3)
                             {
-                                enemyBullets.Add(new enemyBullet(x + 32, y + 11, -180, 1, 200));
+                                enemyBullets.Add(new enemyBullet(x + 32, y + 4, -185, 1, 200));
                             }
                             if (direction == 4)
                             {
-                                enemyBullets.Add(new enemyBullet(x + 32, y + 11, 0, 1, 200));
+                                enemyBullets.Add(new enemyBullet(x + 32, y + 4, -355, 1, 200));
                             }
                         }
                         if (firerate > 64 + 32)
