@@ -102,7 +102,7 @@ namespace spel_project_1
                     }
                     break;
                 case 6:
-                    if (direction == 3)
+                    if (!dive)
                     {
                         imgx = 166;
                     }
