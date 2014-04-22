@@ -1,0 +1,2 @@
+Det ska finnas en mapp med namn på spelet eller vår grupp och sedan ska alla separata mappar finnas där i. 
+High concept måste vara med om ni har kvar den och det måste finnas en textfil med kontroller över hur man spelar spelet.
