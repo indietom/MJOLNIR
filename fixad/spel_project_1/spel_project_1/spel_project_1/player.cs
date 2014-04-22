@@ -153,17 +153,17 @@ namespace spel_project_1
             Random random = new Random();
             KeyboardState keyboard = Keyboard.GetState();
             GamePadState gamepad = GamePad.GetState(PlayerIndex.One);
-            //if (keyboard.IsKeyDown(Keys.R))
-            //{
-            //    camera.X = (int)x;
-            //    camera.Y = 0;
-            //    setCoords(210, 100);
-            //    rocketAmmo += 1000;
-            //    rifleAmmo += 1000;
-            //    shotgunAmmo += 1000;
-            //    hp = 10;
-            //    respawnCounter = 0;
-            //}
+            if (keyboard.IsKeyDown(Keys.R))
+            {
+                camera.X = (int)x;
+                camera.Y = 0;
+                setCoords(210, 100);
+                rocketAmmo += 1000;
+                rifleAmmo += 1000;
+                shotgunAmmo += 1000;
+                hp = 10;
+                respawnCounter = 0;
+            }
             //if (keyboard.IsKeyDown(Keys.F1))
             //{
             //    Console.WriteLine(x);

@@ -179,10 +179,11 @@ namespace spel_project_1
                 }
                 if (section == 8)
                 {
-                    player.x = 0;
+                    player.x = 17;
                 }
                 if (section == 9)
                 {
+                    player.x = 17;
                     player.y = 0;
                     bosses.Add(new boss(2, 539 - 32, 500));
                 }

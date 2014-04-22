@@ -54,6 +54,7 @@ namespace spel_project_1
                     break;
                 case 0:
                     setSize(65, 65);
+                    hp = 10;
                     setSpriteCoords(364, 430);
                     break;
                 case 5:
@@ -255,7 +256,7 @@ namespace spel_project_1
                         firerate += 1;
                         if (firerate == 16 || firerate == 32 || firerate == 32+16)
                         {
-                            enemyBullets.Add(new enemyBullet(x + 16, y + 16, -270, 1, 200));
+                            enemyBullets.Add(new enemyBullet(x + 9, y + 9, -270, 1, 200));
                         }
                         if (firerate >= 64+32)
                         {
@@ -302,7 +303,7 @@ namespace spel_project_1
                         firerate += 1;
                         if (firerate == 16 || firerate == 32 || firerate == 32+16)
                         {
-                            enemyBullets.Add(new enemyBullet(x + 16, y + 16, -270, 1, 200));
+                            enemyBullets.Add(new enemyBullet(x+9, y+9, -270, 1, 200));
                         }
                         if (firerate >= 64+32)
                         {
