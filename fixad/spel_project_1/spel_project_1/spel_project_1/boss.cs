@@ -455,7 +455,7 @@ namespace spel_project_1
                     break;
             }
         }
-        public void checkHealth(levelManager lm, ref string gameState, List<explosion> explosions, ref player player, List<particle> particles)
+        public void checkHealth(levelManager lm, ref string gameState, List<explosion> explosions, ref player player, List<particle> particles, ref float time)
         {
             Random random = new Random();
             if (hit)
@@ -490,6 +490,7 @@ namespace spel_project_1
                     lm.levelsBeaten[type] = true;
                     gameState = "menu";
                     destroy = true;
+                    time = 0;
                 }
             }
         }
