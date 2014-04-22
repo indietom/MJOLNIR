@@ -62,6 +62,11 @@ namespace spel_project_1
         {
             Random random = new Random();
 
+            if (score < 0)
+            {
+                score = 0;
+            }
+
             if (hp >= 11)
             {
                 hp = 10;
@@ -93,6 +98,7 @@ namespace spel_project_1
                 }
                 if (respawnCounter >= 128)
                 {
+                    score -= 1000;
                     lm.section = 1;
                     if (lm.currentLevel == 5)
                     {
