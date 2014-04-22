@@ -27,6 +27,7 @@ namespace spel_project_1
             graphics.PreferredBackBufferWidth = 640;
         }
 
+        float time;
         int endY;
         public int highscore;
         saveState saveState = new saveState();
@@ -87,6 +88,8 @@ namespace spel_project_1
         SoundEffect shoot2Sfx;
         SoundEffect powerUpSfx;
         SoundEffect deathSfx;
+        SoundEffect song1;
+        SoundEffect song2;
         protected override void LoadContent()
         {
             explosionSfx = Content.Load<SoundEffect>("explosion_sfx");
@@ -94,6 +97,8 @@ namespace spel_project_1
             deathSfx = Content.Load<SoundEffect>("splash_sfx");
             shoot2Sfx = Content.Load<SoundEffect>("shoot2_sfx");
             shootSfx = Content.Load<SoundEffect>("shoot_sfx");
+            song1 = Content.Load<SoundEffect>("song1");
+            song2 = Content.Load<SoundEffect>("song2");
             gameFont = Content.Load<SpriteFont>("SpriteFont1");
             bigFont = Content.Load<SpriteFont>("bigFont");
             // Create a new SpriteBatch, which can be used to draw textures.
@@ -118,10 +123,19 @@ namespace spel_project_1
             // TODO: use this.Content to load your game content here
         }
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// all content.
-        /// </summary>
+        public void playMusic(ref float time, float maxTime, SoundEffect song)
+        {
+            Console.WriteLine(time);
+            if (time <= 0)
+            {
+                song.Play();
+            }
+            time += 0.01f;
+            if (time >= maxTime)
+            {
+                time = 0;
+            }
+        }
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
@@ -281,6 +295,23 @@ namespace spel_project_1
                         gameStartedCount += 1;
                     }
 
+                    if (levelManager.currentLevel == 0)
+                    {
+                        playMusic(ref time, 60 + 31, song1); 
+                    }
+                    if (levelManager.currentLevel == 1)
+                    {
+                        playMusic(ref time, 60 + 60 + 13, song2);
+                    }
+                    if (levelManager.currentLevel == 4)
+                    {
+                        playMusic(ref time, 60 + 31, song1);
+                    }
+                    if (levelManager.currentLevel == 6)
+                    {
+                        playMusic(ref time, 60 + 31, song1);
+                    }
+
                     Rectangle playerFeet = new Rectangle((int)player.x, (int)player.y + 2, 32, 32);
                     Rectangle playerBodyL = new Rectangle((int)player.x - 3, (int)player.y - 3, 32, 32);
                     Rectangle playerBodyR = new Rectangle((int)player.x + 3, (int)player.y - 3, 32, 32);
@@ -314,7 +345,7 @@ namespace spel_project_1
                         b.attacking(enemyBullets, enemies);
                         b.animation();
                         b.applyOffset(camera);
-                        b.checkHealth(levelManager, ref gameState, explosions, ref player, particles);
+                        b.checkHealth(levelManager, ref gameState, explosions, ref player, particles, ref time);
                         bossRC = new Rectangle((int)b.x, (int)b.y+5, b.width, b.height-5);
                         if (playerRC.Intersects(bossRC))
                         {
