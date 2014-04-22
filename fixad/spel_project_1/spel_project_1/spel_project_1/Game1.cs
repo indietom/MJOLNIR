@@ -454,7 +454,14 @@ namespace spel_project_1
                         ebulletRC = new Rectangle((int)eb.renderX, (int)eb.renderY, eb.width, eb.height);
                         if (playerRC.Intersects(ebulletRC))
                         {
-                            player.hp -= 1;
+                            if (eb.type == 1)
+                            {
+                                player.hp -= 1;
+                            }
+                            else
+                            {
+                                player.hp -= 3;
+                            }
                             player.hit = true;
                             eb.destroy = true;
                         }

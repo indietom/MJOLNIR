@@ -32,7 +32,7 @@ namespace spel_project_1
                     setSpriteCoords(232, 28);
                     break;
                 case 2:
-                    speed = 5;
+                    speed = 9;
                     setSize(32, 32);
                     setSpriteCoords(496, 397);
                     break;
