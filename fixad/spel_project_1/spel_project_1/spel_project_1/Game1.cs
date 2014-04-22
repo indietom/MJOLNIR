@@ -831,15 +831,15 @@ namespace spel_project_1
                     }
                     if (gameStartedCount <= 128 * 1)
                     {
-                        spriteBatch.DrawString(gameFont, "Arrow keys or WASD to Move, W or Z to jump", new Vector2(50, 50), Color.Gold);
+                        spriteBatch.DrawString(gameFont, "Move using ASD or arrow keys, jump with W or Z.", new Vector2(50, 50), Color.Gold);
                     }
                     if (gameStartedCount <= 128 * 3 && gameStartedCount >= 128)
                     {
-                        spriteBatch.DrawString(gameFont, "X or Space to shoot, press 1 for pistol, 2 for an rpg, 3 for a shotgun and 4 for an smg", new Vector2(50, 50), Color.Gold);
+                        spriteBatch.DrawString(gameFont, "Shoot using SPACE or X. Switch weapons with 1, 2, 3 and 4.", new Vector2(50, 50), Color.Gold);
                     }
                     if (gameStartedCount <= 128 * 5 && gameStartedCount >= 128 * 3)
                     {
-                        spriteBatch.DrawString(gameFont, "You can see your avalibe guns next to the health bar and the ammo in the right corner \n when you have the gun equiped", new Vector2(50, 50), Color.Gold);
+                        spriteBatch.DrawString(gameFont, "Weapons menu and health is in the left corner", new Vector2(50, 50), Color.Gold);
                     }
                     break;
             }
