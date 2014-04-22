@@ -106,6 +106,7 @@ namespace spel_project_1
                     }
                     lm.roomTransition(ref inputActive, enemies, bullets, new player(), particles, powerUps, ref camera, enemyBullets, bosses); 
                     hp = 10;
+                    particles.Clear();
                     respawnCounter = 0;
                     setCoords(320, 200);
                     camera.X = 0;
