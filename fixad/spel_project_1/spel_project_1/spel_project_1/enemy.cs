@@ -117,7 +117,7 @@ namespace spel_project_1
                     break;
             }
         }
-        public void checkHealth(List<explosion> explosions, List<particle> particles)
+        public void checkHealth(List<explosion> explosions, List<particle> particles, player player)
         {
             Random random = new Random();
             if (hit)
@@ -143,13 +143,16 @@ namespace spel_project_1
                 if (type == 1)
                 {
                     explosions.Add(new explosion(x, y, 16));
+                    player.score += 500;
                 }
                 if (type == 2 || type == 5)
                 {
+                    player.score += 5000;
                     explosions.Add(new explosion(x, y, 32));
                 }
                 if (type == 4)
                 {
+                    player.score += 50000;
                     explosions.Add(new explosion(x, y, 64));
                 }
                 destroy = true;

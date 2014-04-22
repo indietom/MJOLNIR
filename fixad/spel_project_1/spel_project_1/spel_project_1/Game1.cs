@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -26,6 +28,7 @@ namespace spel_project_1
         }
 
         int endY;
+        public int highscore;
         saveState saveState = new saveState();
         bool gameStarted;
         bool drawCutScene;
@@ -51,7 +54,9 @@ namespace spel_project_1
         
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            StreamReader highscoreFileReader = new StreamReader("highscore.txt", Encoding.UTF8);
+            highscore = int.Parse(highscoreFileReader.ReadToEnd());
+            highscoreFileReader.Close();
             gameStarted = false;
             camera = new Rectangle(0, 0, 320, 240);
             menu = new menu(titleCards);
@@ -120,6 +125,17 @@ namespace spel_project_1
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+        }
+
+        public void checkHighScore()
+        {
+            if (player.score >= highscore)
+            {
+                highscore = player.score;
+                System.IO.StreamWriter highscoreFile = new System.IO.StreamWriter("highscore.txt");
+                highscoreFile.WriteLine(highscore.ToString());
+                highscoreFile.Close();
+            }
         }
 
         public void cameraLogic()
@@ -220,6 +236,7 @@ namespace spel_project_1
 
         protected override void Update(GameTime gameTime)
         {
+            checkHighScore();
             levelManager.checkSection(level);
             levelManager.checkLevel();
             KeyboardState keyboard = Keyboard.GetState();
@@ -364,7 +381,7 @@ namespace spel_project_1
                         e.attacking(enemyBullets, player, particles);
                         e.animation();
                         e.applyOffset(camera);
-                        e.checkHealth(explosions, particles);
+                        e.checkHealth(explosions, particles, player);
                         enemyC = new Rectangle((int)e.x, (int)e.y + 2, e.width, e.height);
                         enemyCL = new Rectangle((int)e.x - 3, (int)e.y - 5, e.width, e.height);
                         enemyCR = new Rectangle((int)e.x + 3, (int)e.y - 5, e.width, e.height);
@@ -680,6 +697,7 @@ namespace spel_project_1
                             levelManager.levelsBeaten[i] = false;
                             player = new player();
                         }
+                        player.score = 0;
                         gameState = "start screen";
                     }
                     spriteBatch.DrawString(gameFont, "You have defeted the evil god! \n\n\n\n\n\n Programming by Tom and Elmer \n\n Graphics by Zamuel \n\n level design by Tom and Elmer \n\n\n\n thanks for playing", new Vector2(0, endY), Color.Gold);
@@ -780,6 +798,8 @@ namespace spel_project_1
                         spriteBatch.DrawString(gameFont, "Rifle: " + player.rifleAmmo, new Vector2(500, 30), Color.Coral);
                         spriteBatch.Draw(spritesheet, new Vector2(20 + 65, 10+16), new Rectangle(34, 529, 5, 6), Color.White);
                     }
+                    spriteBatch.DrawString(gameFont, "Score: " + player.score, new Vector2(500, 50), Color.Gold);
+                    spriteBatch.DrawString(gameFont, "HighScore: " + highscore, new Vector2(500, 70), Color.LimeGreen);
                     if (player.dead)
                     {
                         spriteBatch.DrawString(bigFont, "You died!", new Vector2(320 - 3 * 24, 240 - 24), Color.Red);

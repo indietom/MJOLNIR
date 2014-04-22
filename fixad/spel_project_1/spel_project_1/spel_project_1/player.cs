@@ -41,6 +41,7 @@ namespace spel_project_1
         public int hammerDelay;
         public bool spawnHammerEffectCheck;
         public int respawnCounter;
+        public int score;
 
         public player()
         {
