@@ -19,6 +19,8 @@ namespace spel_project_1
         SpriteBatch spriteBatch;
 
         SpriteFont gameFont;
+        SpriteFont gameFont2;
+        SpriteFont creditsFont;
 
         public Game1()
         {
@@ -55,6 +57,14 @@ namespace spel_project_1
         
         protected override void Initialize()
         {
+            if (!File.Exists("highscore.txt"))
+            {
+                using (StreamWriter writer = new StreamWriter("highscore.txt"))
+                {
+                    writer.WriteLine("0");
+                    writer.Close();
+                }
+            }
             StreamReader highscoreFileReader = new StreamReader("highscore.txt", Encoding.UTF8);
             highscore = int.Parse(highscoreFileReader.ReadToEnd());
             highscoreFileReader.Close();
@@ -100,6 +110,8 @@ namespace spel_project_1
             song1 = Content.Load<SoundEffect>("song1");
             song2 = Content.Load<SoundEffect>("song2");
             gameFont = Content.Load<SpriteFont>("SpriteFont1");
+            gameFont2 = Content.Load<SpriteFont>("SpriteFont2");
+            creditsFont = Content.Load<SpriteFont>("SpriteFont3");
             bigFont = Content.Load<SpriteFont>("bigFont");
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -120,6 +132,10 @@ namespace spel_project_1
             tileSet1 = Content.Load<Texture2D>("tileSet1");
             tileSet8 = Content.Load<Texture2D>("tileSet8");
             startScreen = Content.Load<Texture2D>("startScreen");
+
+            //Song level4 = Content.Load<Song>("ISM.mp3");
+            //MediaPlayer.Play(level4);
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -728,7 +744,7 @@ namespace spel_project_1
             {
                 case "end":
                     endY -= 1;
-                    if (endY <= -300)
+                    if (endY <= -700)
                     {
                         for (int i = 0; i < 9; i++)
                         {
@@ -738,7 +754,7 @@ namespace spel_project_1
                         player.score = 0;
                         gameState = "start screen";
                     }
-                    spriteBatch.DrawString(gameFont, "You have defeted the evil god! \n\n\n\n\n\n Programming by Tom and Elmer \n\n Graphics by Zamuel \n\n level design by Tom and Elmer \n\n\n\n thanks for playing", new Vector2(0, endY), Color.Gold);
+                    spriteBatch.DrawString(creditsFont, "THOR HAS BEEN VANQUISHED! \n\n\n\n\n\n Code: Tom Leonardsson \n          and Elmer Dellson \n\n Graphics: Zamuel Toroczkay \n\n Level Design: Elmer Dellson \n          and Tom Leonardsson \n\n\n\n Thank you for playing.", new Vector2(0, endY), Color.White);
                     break;
                 case "start screen":
                     spriteBatch.Draw(startScreen, new Vector2(0, 0), Color.White);
@@ -762,7 +778,7 @@ namespace spel_project_1
                         gameState = "end";
                     }
                     if (!gameStarted)
-                        spriteBatch.DrawString(gameFont, "Use the mouse to pick level, starting with level 1 is recommended", new Vector2(0, 0), Color.Tomato);
+                        spriteBatch.DrawString(gameFont2, "Use the mouse to pick level", new Vector2(100, 0), Color.Red);
                     break;
                 case "game":
                     
@@ -818,29 +834,29 @@ namespace spel_project_1
                     healthbar.drawSprite(spriteBatch, spritesheet);
                     if (player.gunType == 1)
                     {
-                        spriteBatch.DrawString(gameFont, "Pistol: infinite", new Vector2(500, 30), Color.Coral);
+                        spriteBatch.DrawString(gameFont, "Pistol: Unlimited", new Vector2(500, 20), Color.Coral);
                         spriteBatch.Draw(spritesheet, new Vector2(20 + 5, 10+16), new Rectangle(34, 529, 5, 6), Color.White);
                     }
                     if (player.gunType == 2)
                     {
-                        spriteBatch.DrawString(gameFont, "Rocket: " + player.rocketAmmo, new Vector2(500, 30), Color.Coral);
+                        spriteBatch.DrawString(gameFont, "Rocket: " + player.rocketAmmo, new Vector2(500, 20), Color.Coral);
                         spriteBatch.Draw(spritesheet, new Vector2(20 + 25, 10 + 16), new Rectangle(34, 529, 5, 6), Color.White);
                     }
                     if (player.gunType == 3)
                     {
-                        spriteBatch.DrawString(gameFont, "Shotgun: " + player.shotgunAmmo, new Vector2(500, 30), Color.Coral);
+                        spriteBatch.DrawString(gameFont, "Shotgun: " + player.shotgunAmmo, new Vector2(500, 20), Color.Coral);
                         spriteBatch.Draw(spritesheet, new Vector2(20 + 45, 10 + 16), new Rectangle(34, 529, 5, 6), Color.White);
                     }
                     if (player.gunType == 4)
                     {
-                        spriteBatch.DrawString(gameFont, "Rifle: " + player.rifleAmmo, new Vector2(500, 30), Color.Coral);
+                        spriteBatch.DrawString(gameFont, "Rifle: " + player.rifleAmmo, new Vector2(500, 20), Color.Coral);
                         spriteBatch.Draw(spritesheet, new Vector2(20 + 65, 10+16), new Rectangle(34, 529, 5, 6), Color.White);
                     }
-                    spriteBatch.DrawString(gameFont, "Score: " + player.score, new Vector2(500, 50), Color.Gold);
-                    spriteBatch.DrawString(gameFont, "HighScore: " + highscore, new Vector2(500, 70), Color.LimeGreen);
+                    spriteBatch.DrawString(gameFont, "Score: " + player.score, new Vector2(500, 40), Color.Gold);
+                    spriteBatch.DrawString(gameFont, "HighScore: " + highscore, new Vector2(500, 60), Color.LimeGreen);
                     if (player.dead)
                     {
-                        spriteBatch.DrawString(bigFont, "You died!", new Vector2(320 - 3 * 24, 240 - 24), Color.Red);
+                        spriteBatch.DrawString(bigFont, "You died!", new Vector2(165, 200), Color.Red);
                     }
                     spriteBatch.Draw(spritesheet, new Vector2(20, 10), new Rectangle(34, 496, 16, 16), Color.White);
                     if (player.rocketAmmo >= 1)
@@ -869,15 +885,15 @@ namespace spel_project_1
                     }
                     if (gameStartedCount <= 128 * 1)
                     {
-                        spriteBatch.DrawString(gameFont, "Move using ASD or arrow keys, jump with W or Z.", new Vector2(50, 50), Color.Gold);
+                        spriteBatch.DrawString(gameFont2, "Move using ASD or arrow keys, \njump with W or Z.", new Vector2(40, 50), Color.Gold);
                     }
                     if (gameStartedCount <= 128 * 3 && gameStartedCount >= 128)
                     {
-                        spriteBatch.DrawString(gameFont, "Shoot using SPACE or X. Switch weapons with 1, 2, 3 and 4.", new Vector2(50, 50), Color.Gold);
+                        spriteBatch.DrawString(gameFont2, "Shoot using SPACE or X. \nSwitch weapons with 1, 2, 3 and 4.", new Vector2(40, 50), Color.Gold);
                     }
                     if (gameStartedCount <= 128 * 5 && gameStartedCount >= 128 * 3)
                     {
-                        spriteBatch.DrawString(gameFont, "Weapons menu and health is in the left corner", new Vector2(50, 50), Color.Gold);
+                        spriteBatch.DrawString(gameFont2, "Weapons menu and health is \nin the left corner, ammo \nand score in the right.", new Vector2(40, 50), Color.Gold);
                     }
                     break;
             }
