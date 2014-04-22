@@ -24,10 +24,6 @@ namespace spel_project_1
         public levelManager()
         {
             levelsBeaten = new bool[9];
-            for (int i = 0; i < 9; i++)
-            {
-                levelsBeaten[i] = true;
-            }
             section = 1;
         }
         public void resetLevel(List<enemy> enemies, List<bullet> bullets)
